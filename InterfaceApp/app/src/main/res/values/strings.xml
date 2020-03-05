@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ARDHOUSE</string>
+    <string name="temperatura">Temperatura: </string>
+    <string name="umidade">Umidade: </string>
+    <string name="data">Última atualização: </string>
+    <string name="lampada">Ligar/Desligar \n Lâmpada</string>
+    <string name="ventiladorligar">Ligar/Desligar \n Ventilador</string>
+    <string name="ventiladorcontrol">Controlar \n Ventilador</string>
+    <string name="porta">Abrir/Fechar \n Porta</string>
+    <string name="selecionar">SELECIONAR ARDUINO ATIVO</string>
+</resources>
