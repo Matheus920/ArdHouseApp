@@ -1,3 +1,0 @@
-rootProject.name='ArdHouse'
-include ':app'
-include ':data'
