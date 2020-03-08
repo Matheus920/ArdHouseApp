@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.usp.ardhouse.SelecionarArduinoActivity">
+    tools:context="br.usp.ardhouse.activity.SelecionarArduinoActivity">
 
     <TextView
         android:id="@+id/nomeText"
@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="Salvar"
+        android:onClick="salvar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"

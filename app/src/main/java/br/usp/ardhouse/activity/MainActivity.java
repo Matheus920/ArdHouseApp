@@ -1,4 +1,4 @@
-package br.usp.ardhouse;
+package br.usp.ardhouse.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

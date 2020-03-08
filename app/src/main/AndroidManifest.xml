@@ -9,13 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ardhouse.SelecionarArduinoActivity"
-            android:parentActivityName=".ardhouse.MainActivity">
+        <activity android:name=".ardhouse.activity.SelecionarArduinoActivity"
+            android:parentActivityName=".ardhouse.activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ardhouse.MainActivity"/>
+                android:value=".ardhouse.activity.MainActivity"/>
         </activity>
-        <activity android:name=".ardhouse.MainActivity">
+        <activity android:name=".ardhouse.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

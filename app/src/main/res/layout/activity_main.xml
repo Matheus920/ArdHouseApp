@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#239E7B"
-    tools:context="br.usp.ardhouse.MainActivity">
+    tools:context="br.usp.ardhouse.activity.MainActivity">
 
     <Button
         android:id="@+id/selecionarduino"
