@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SelecionarArduinoActivity extends AppCompatActivity {
 
@@ -24,9 +25,20 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void salvar(View view){
         EditText nomeArduino = findViewById(R.id.arduinoTexto);
+        String nomeArduinoString = nomeArduino.getText().toString();
+
+        if(nomeArduinoString.length() <= 0){
+            nomeArduino.requestFocus();
+            nomeArduino.setError("Campo de nome não pode ser vazio");
+            return;
+        }
+
         String resposta = controller.salvarArduino(nomeArduino.getText().toString());
         if(!resposta.equals("")){
-            // TODO tratar erro
+            Toast.makeText(SelecionarArduinoActivity.this, resposta, Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(SelecionarArduinoActivity.this, "Salvo com sucesso", Toast.LENGTH_LONG).show();
+            SelecionarArduinoActivity.this.finish();
         }
     }
 }

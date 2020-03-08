@@ -6,24 +6,26 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.io.IOException;
+import java.util.Map;
 
 import br.usp.ardhouse.data.Arquivo;
 
-public class SelecionarArduinoController {
+public class MainActivityController {
 
     private Context context;
 
-    public SelecionarArduinoController(Context context){
+    public MainActivityController(Context context){
         this.context = context;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public String salvarArduino(String ip){
+    public String lerArduinoAtual(){
         String resposta = "";
         try {
-            Arquivo.salvarArquivo("configuration.txt", "NAME=" + ip, context);
-        } catch (IOException e){
-            resposta = "Ocorreu um erro durante a leitura. Por favor tente novamente mais tarde";
+            Map<String, String> conteudo = Arquivo.lerArquivo("configuration.txt", context);
+            resposta = conteudo.get("NAME");
+        } catch (IOException e) {
+            resposta = "Ocorreu um erro ao ler o arduino";
         }
         return resposta;
     }

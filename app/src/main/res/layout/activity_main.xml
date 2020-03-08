@@ -12,9 +12,9 @@
         android:layout_width="244dp"
         android:layout_height="68dp"
         android:background="#1199D6"
+        android:onClick="selecionarArduino"
         android:text="@string/selecionar"
         android:textColor="#FFFFFF"
-        android:onClick="selecionarArduino"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -131,5 +131,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.248" />
+
+    <TextView
+        android:id="@+id/arduinoAtual"
+        android:layout_width="252dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginBottom="32dp"
+        android:text="Arduino atual: "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selecionarduino"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
