@@ -1,4 +1,4 @@
-package Ard.House;
+package br.usp.ardhouse;
 
 import org.junit.Test;
 
