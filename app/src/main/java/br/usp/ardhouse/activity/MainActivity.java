@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MainActivityController controller = new MainActivityController(MainActivity.this.getBaseContext());
+        MainActivityController controller = new MainActivityController(MainActivity.this);
         nomeArduino = controller.lerArduinoAtual();
         TextView exibicao = findViewById(R.id.arduinoAtual);
         if(nomeArduino != null) {
@@ -36,4 +36,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SelecionarArduinoActivity.class);
         startActivity(intent);
     }
+
+
 }
