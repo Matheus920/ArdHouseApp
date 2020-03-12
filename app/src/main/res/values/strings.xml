@@ -8,4 +8,6 @@
     <string name="ventiladorcontrol">Controlar \n Ventilador</string>
     <string name="porta">Abrir/Fechar \n Porta</string>
     <string name="selecionar">SELECIONAR ARDUINO ATIVO</string>
+    <string name="arduinoatual">Arduino atual: </string>
+    <string name="refresh"> </string>
 </resources>

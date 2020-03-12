@@ -8,7 +8,7 @@
     tools:context="br.usp.ardhouse.activity.MainActivity">
 
     <Button
-        android:id="@+id/selecionarduino"
+        android:id="@+id/btnSelecionarArduino"
         android:layout_width="244dp"
         android:layout_height="68dp"
         android:background="#1199D6"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.861" />
 
     <Button
-        android:id="@+id/porta"
+        android:id="@+id/btnPorta"
         android:layout_width="152dp"
         android:layout_height="85dp"
         android:background="#FFFFFF"
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.428" />
 
     <Button
-        android:id="@+id/ventiladorcontrol"
+        android:id="@+id/btnVentiladorControle"
         android:layout_width="152dp"
         android:layout_height="85dp"
         android:background="#FFFFFF"
@@ -49,7 +49,7 @@
         app:layout_constraintVertical_bias="0.642" />
 
     <Button
-        android:id="@+id/ventiladorligardesligar"
+        android:id="@+id/btnVentiladorLigarDesligar"
         android:layout_width="152dp"
         android:layout_height="85dp"
         android:background="#FFFFFF"
@@ -62,7 +62,7 @@
         app:layout_constraintVertical_bias="0.642" />
 
     <Button
-        android:id="@+id/lampada"
+        android:id="@+id/btnLampada"
         android:layout_width="152dp"
         android:layout_height="85dp"
         android:background="#FFFFFF"
@@ -75,7 +75,7 @@
         app:layout_constraintVertical_bias="0.428" />
 
     <TextView
-        android:id="@+id/ardhouse"
+        android:id="@+id/lblTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
@@ -89,7 +89,7 @@
         app:layout_constraintVertical_bias="0.096" />
 
     <TextView
-        android:id="@+id/data"
+        android:id="@+id/lblUltimaAtualizacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/data"
@@ -104,7 +104,7 @@
         app:layout_constraintVertical_bias="0.325" />
 
     <TextView
-        android:id="@+id/umidade"
+        android:id="@+id/lblUmidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/umidade"
@@ -118,7 +118,7 @@
         app:layout_constraintVertical_bias="0.286" />
 
     <TextView
-        android:id="@+id/temperatura"
+        android:id="@+id/lblTemperatura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/temperatura"
@@ -133,16 +133,42 @@
         app:layout_constraintVertical_bias="0.248" />
 
     <TextView
-        android:id="@+id/arduinoAtual"
+        android:id="@+id/lblArduinoAtual"
         android:layout_width="252dp"
         android:layout_height="27dp"
         android:layout_marginTop="41dp"
         android:layout_marginBottom="32dp"
-        android:text="Arduino atual: "
+        android:text="@string/arduinoatual"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selecionarduino"
+        app:layout_constraintTop_toBottomOf="@+id/btnSelecionarArduino"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/btnRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#239E7B"
+        android:onClick="atualizarData"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.895"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.311"
+        app:srcCompat="@drawable/refresh" />
+
+    <TextView
+        android:id="@+id/lblData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.605"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.325" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
