@@ -7,14 +7,15 @@ import br.usp.R;
 import br.usp.ardhouse.controller.SelecionarArduinoController;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.VibrationEffect;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+import android.os.Vibrator;
 import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
@@ -31,6 +32,7 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
     TextView txtBarcodeValue;
     private BarcodeDetector barcodeDetector;
     private CameraSource cameraSource;
+    private Vibrator vibrador;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
     String conteudoQRCode = "";
 
@@ -41,7 +43,7 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_selecionar_arduino);
         txtBarcodeValue = findViewById(R.id.txtBarcodeValue);
         surfaceView = findViewById(R.id.surfaceView);
-
+        vibrador = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         controller = new SelecionarArduinoController(SelecionarArduinoActivity.this);
     }
 
@@ -109,6 +111,7 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
                                 conteudoQRCode = barcodes.valueAt(0).rawValue;
                                 txtBarcodeValue.setText(conteudoQRCode);
                                 controller.salvarArduino(conteudoQRCode);
+                                vibrador.vibrate(VibrationEffect.createOneShot(400, VibrationEffect.DEFAULT_AMPLITUDE));
                                 fecharAtividade();
                             }
                         }
