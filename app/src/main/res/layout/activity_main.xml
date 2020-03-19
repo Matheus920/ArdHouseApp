@@ -134,16 +134,17 @@
 
     <TextView
         android:id="@+id/lblArduinoAtual"
-        android:layout_width="252dp"
-        android:layout_height="27dp"
+        android:layout_width="94dp"
+        android:layout_height="24dp"
         android:layout_marginTop="41dp"
         android:layout_marginBottom="32dp"
         android:text="@string/arduinoatual"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.132"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSelecionarArduino"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/btnRefresh"
@@ -170,5 +171,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.325" />
+
+    <TextView
+        android:id="@+id/lblNomeArduino"
+        android:layout_width="198dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="36dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.263"
+        app:layout_constraintStart_toEndOf="@+id/lblArduinoAtual" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,51 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin">
 
-    <com.journeyapps.barcodescanner.DecoratedBarcodeView
-        android:id="@+id/barcode_scanner"
+    <SurfaceView
+        android:id="@+id/surfaceView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_above="@+id/buttonsLayout"
-        android:layout_alignParentTop="true">
-
-    </com.journeyapps.barcodescanner.DecoratedBarcodeView>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/buttonsLayout"
-        android:layout_toLeftOf="@+id/centerHorizont">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pause"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Resume"
-            />
-    </LinearLayout>
-
-    <View
-        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/centerHorizont" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" />
 
-    <ImageView
+    <TextView
+        android:id="@+id/txtBarcodeValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/centerHorizont"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/buttonsLayout"
-        android:id="@+id/barcodePreview" />
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:text="Escaneie um QRCode válido"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+
 
 </RelativeLayout>

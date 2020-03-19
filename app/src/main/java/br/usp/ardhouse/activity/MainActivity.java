@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private String nomeArduino;
 
     private LocalDateTime ultimaAtualizacao;
+    private MainActivityController controller;
+    TextView exibicao;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -27,17 +29,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MainActivityController controller = new MainActivityController(MainActivity.this);
-        nomeArduino = controller.lerArduinoAtual();
-        TextView exibicao = findViewById(R.id.lblArduinoAtual);
-        if(nomeArduino != null) {
-            exibicao.setText(exibicao.getText().toString() + "" + nomeArduino);
-        }else {
-            exibicao.setText(exibicao.getText().toString() + "Nenhum arduino selecionado");
-        }
-
-        atualizarData(null);
-
+        controller = new MainActivityController(MainActivity.this);
+        exibicao = findViewById(R.id.lblNomeArduino);
 
     }
 
@@ -45,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
     public void selecionarArduino(View view){
         Intent intent = new Intent(this, SelecionarArduinoActivity.class);
         startActivity(intent);
+    }
+
+    private void atualizarNomeArduino(){
+        nomeArduino = controller.lerArduinoAtual();
+
+        if(nomeArduino != null) {
+            exibicao.setText(nomeArduino);
+        }else {
+            exibicao.setText("Nenhum arduino selecionado");
+        }
     }
 
     // Ultima atualização de horário
@@ -56,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
         String dateFormated = ultimaAtualizacao.format(formatador);
         exibirData.setText("");
         exibirData.setText(exibirData.getText() + " " + dateFormated);
+
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        atualizarData(null);
+        atualizarNomeArduino();
 
     }
 

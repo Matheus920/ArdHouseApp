@@ -1,75 +1,137 @@
 package br.usp.ardhouse.activity;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import br.usp.R;
 import br.usp.ardhouse.controller.SelecionarArduinoController;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.SparseArray;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.ResultPoint;
-import com.google.zxing.client.android.BeepManager;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-import com.journeyapps.barcodescanner.BarcodeCallback;
-import com.journeyapps.barcodescanner.BarcodeResult;
-import com.journeyapps.barcodescanner.DecoratedBarcodeView;
-import com.journeyapps.barcodescanner.DefaultDecoderFactory;
+import com.google.android.gms.vision.CameraSource;
+import com.google.android.gms.vision.Detector;
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.io.IOException;
 
 public class SelecionarArduinoActivity extends AppCompatActivity {
 
     private SelecionarArduinoController controller;
-    private DecoratedBarcodeView barcodeView;
-    private BeepManager beepManager;
-    private String lastText;
+    SurfaceView surfaceView;
+    TextView txtBarcodeValue;
+    private BarcodeDetector barcodeDetector;
+    private CameraSource cameraSource;
+    private static final int REQUEST_CAMERA_PERMISSION = 201;
+    String conteudoQRCode = "";
 
-    private BarcodeCallback callback = new BarcodeCallback() {
-        @Override
-        public void barcodeResult(BarcodeResult result) {
-            if(result.getText() == null || result.getText().equals(lastText)){
-                return;
-            }
-
-            lastText = result.getText();
-            barcodeView.setStatusText(result.getText());
-            beepManager.playBeepSoundAndVibrate();
-            ImageView imageView = findViewById(R.id.barcodePreview);
-            imageView.setImageBitmap(result.getBitmapWithResultPoints(Color.YELLOW));
-        }
-
-        @Override
-        public void possibleResultPoints(List<ResultPoint> resultPoints) {
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selecionar_arduino);
-        barcodeView = findViewById(R.id.barcode_scanner);
-        Collection<BarcodeFormat> formats = Arrays.asList(BarcodeFormat.QR_CODE);
-        barcodeView.getBarcodeView().setDecoderFactory(new DefaultDecoderFactory(formats));
-        barcodeView.initializeFromIntent(getIntent());
-        barcodeView.decodeContinuous(callback);
+        txtBarcodeValue = findViewById(R.id.txtBarcodeValue);
+        surfaceView = findViewById(R.id.surfaceView);
 
-        beepManager = new BeepManager(this);
         controller = new SelecionarArduinoController(SelecionarArduinoActivity.this);
     }
 
+    private void initialiseDetectorsAndSources() {
 
-    public void salvar(View view){
+        Toast.makeText(getApplicationContext(), "Iniciando leitura do QRCode", Toast.LENGTH_SHORT).show();
+
+        barcodeDetector = new BarcodeDetector.Builder(this)
+                .setBarcodeFormats(Barcode.ALL_FORMATS)
+                .build();
+
+        cameraSource = new CameraSource.Builder(this, barcodeDetector)
+                .setRequestedPreviewSize(1920, 1080)
+                .setAutoFocusEnabled(true) //you should add this feature
+                .build();
+
+        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                try {
+                    if (ActivityCompat.checkSelfPermission(SelecionarArduinoActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                        cameraSource.start(surfaceView.getHolder());
+                    } else {
+                        ActivityCompat.requestPermissions(SelecionarArduinoActivity.this, new
+                                String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+                cameraSource.stop();
+            }
+        });
+
+
+        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
+            @Override
+            public void release() {
+                Toast.makeText(getApplicationContext(), "Leitura de QRCode parada", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void receiveDetections(Detector.Detections<Barcode> detections) {
+                final SparseArray<Barcode> barcodes = detections.getDetectedItems();
+                if (barcodes.size() != 0) {
+
+
+                    txtBarcodeValue.post(new Runnable() {
+
+                        @Override
+                        public void run() {
+
+                            if (barcodes.valueAt(0) != null) {
+                                txtBarcodeValue.removeCallbacks(null);
+                                conteudoQRCode = barcodes.valueAt(0).rawValue;
+                                txtBarcodeValue.setText(conteudoQRCode);
+                                controller.salvarArduino(conteudoQRCode);
+                                fecharAtividade();
+                            }
+                        }
+                    });
+
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        cameraSource.release();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initialiseDetectorsAndSources();
+    }
+
+    public void fecharAtividade(){
+        this.finish();
     }
 }
