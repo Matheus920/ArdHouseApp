@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -67,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
         exibirData.setText("");
         exibirData.setText(exibirData.getText() + " " + dateFormated);
 
+    }
+
+    public void mudarEstadoLampada(View view){
+        String texto = controller.mudarEstadoLampada();
+        Toast.makeText(MainActivity.this, texto, Toast.LENGTH_SHORT).show();
     }
 
     // Sempre que a tela principal é chamada, atualiza a data e o nome do Arduino atual
