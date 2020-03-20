@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // Método responsável por atualizar o nome do Arduino selecionado atualmente, lendo a partir de um arquivo .txt
     private void atualizarNomeArduino(){
         nomeArduino = controller.lerArduinoAtual();
 
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Sempre que a tela principal é chamada, atualiza a data e o nome do Arduino atual
     @Override
     protected void onResume(){
         super.onResume();

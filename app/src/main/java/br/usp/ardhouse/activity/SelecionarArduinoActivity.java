@@ -14,7 +14,6 @@ import android.os.VibrationEffect;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.WindowManager;
 import android.widget.TextView;
 import android.os.Vibrator;
 import android.widget.Toast;
@@ -42,10 +41,6 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selecionar_arduino);
-
-        getSupportActionBar().hide();
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         txtBarcodeValue = findViewById(R.id.txtBarcodeValue);
         surfaceView = findViewById(R.id.surfaceView);
         vibrador = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -62,9 +57,10 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
 
         cameraSource = new CameraSource.Builder(this, barcodeDetector)
                 .setRequestedPreviewSize(1920, 1080)
-                .setAutoFocusEnabled(true) //you should add this feature
+                .setAutoFocusEnabled(true) // IMPORTANTE
                 .build();
 
+        // Inicializa a câmera e pede permissão do usuário para utilizá-la
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
@@ -100,6 +96,7 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Leitura de QRCode parada", Toast.LENGTH_SHORT).show();
             }
 
+            // Método para controlar as detecções de QRCode
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
@@ -111,6 +108,7 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
                         @Override
                         public void run() {
 
+                            // Se o QRCode for reconhecido, coloca na tela o conteúdo e vibra o celular
                             if (barcodes.valueAt(0) != null) {
                                 txtBarcodeValue.removeCallbacks(null);
                                 conteudoQRCode = barcodes.valueAt(0).rawValue;
@@ -127,12 +125,14 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
         });
     }
 
+    // Na saída da tela, para o detector de QRCode
     @Override
     protected void onPause() {
         super.onPause();
         cameraSource.release();
     }
 
+    // Sempre que a tela de selecionar o Arduino é chamada, inicializa o detector de QRCode
     @Override
     protected void onResume() {
         super.onResume();
