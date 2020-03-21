@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 
 import br.usp.R;
 import br.usp.ardhouse.controller.MainActivityController;
+import br.usp.ardhouse.infrastructure.ServerCallback;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,8 +72,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void mudarEstadoLampada(View view){
-        String texto = controller.mudarEstadoLampada();
-        Toast.makeText(MainActivity.this, texto, Toast.LENGTH_SHORT).show();
+        controller.mudarEstadoLampada(new ServerCallback() {
+            @Override
+            public void onSuccess(String result) {
+                Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     // Sempre que a tela principal é chamada, atualiza a data e o nome do Arduino atual

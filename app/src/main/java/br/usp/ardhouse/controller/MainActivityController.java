@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import br.usp.ardhouse.data.Arquivo;
+import br.usp.ardhouse.infrastructure.ServerCallback;
 
 public class MainActivityController {
 
@@ -39,30 +40,23 @@ public class MainActivityController {
         return resposta;
     }
 
-    public String mudarEstadoLampada(){
+    public void mudarEstadoLampada(final ServerCallback callback){
         String nomeArduino = lerArduinoAtual();
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "http://" + nomeArduino + "/?ledParam";
-        final ArrayList<String> resposta = new ArrayList<>();
+        String url = "http://" + nomeArduino + "/?ledParam=1";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                resposta.add(response);
+                callback.onSuccess(response.substring(0, 10));
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                resposta.add("Erro na requisição");
+                callback.onSuccess(error.getMessage());
             }
         });
 
         queue.add(stringRequest);
-
-        if(resposta.size() > 0) {
-            return resposta.get(0);
-        } else {
-            return "Sem resposta do servidor especificado";
-        }
     }
 }
