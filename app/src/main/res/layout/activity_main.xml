@@ -1,196 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorArduino"
+    android:orientation="vertical"
     tools:context="br.usp.ardhouse.activity.MainActivity">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/colorWhite"
-        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp" >
+        android:layout_height="0dp"
+        android:layout_weight="0.145"
+        android:background="@color/colorGray2">
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginHorizontal="176dp"
-            android:layout_marginVertical="20dp"
-            android:layout_gravity="center"
-            android:background="@drawable/ardhousefundobranco" />
+        <View
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="165dp"
+            android:layout_marginTop="5dp"
+            android:foreground="@drawable/ardhousefundobranco" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.52"
+        android:background="@color/colorArduino"
+        android:orientation="vertical"
+        android:padding="25dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/text_temperatura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/temperatura"
+                android:textColor="@color/colorGray" />
+
+            <TextView
+                android:id="@+id/text_umidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_temperatura"
+                android:text="@string/umidade"
+                android:textColor="@color/colorGray" />
+
+            <TextView
+                android:id="@+id/text_ultima_atualizacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_umidade"
+                android:text="@string/data"
+                android:textColor="@color/colorGray" />
+
+            <TextView
+                android:id="@+id/text_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_umidade"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/text_ultima_atualizacao"
+                android:textColor="@color/colorGray" />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_weight="0.4"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:onClick="mudarEstadoLampada"
+                    android:id="@+id/btnLampada"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginRight="10dp"
+                    android:foreground="@drawable/lampada"
+                    android:background="@drawable/botao_customizado"
+                    />
+
+                <ImageButton
+                    android:id="@+id/button_porta"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/botao_customizado"
+                    android:foreground="@drawable/porta"
+                    android:tint="@color/colorWhite" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/button_ventilador"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/botao_customizado"
+                    android:foreground="@drawable/ventilador"
+                    android:tint="@color/colorWhite" />
+
+                <ImageButton
+                    android:id="@+id/button_alarme"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/botao_customizado"
+                    android:foreground="@drawable/alarme"
+                    android:tint="@color/colorWhite" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.18"
+        android:background="@color/colorArduino"
+        android:orientation="vertical"
+        android:padding="25dp">
+
+        <Button
+            android:onClick="selecionarArduino"
+            android:id="@+id/btnSelecionarArduino"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/botao_customizado"
+            android:text="@string/selecionar"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/lblArduinoAtual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/arduinoatual"
+                android:textColor="@color/colorGray"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/lblNomeArduino"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/lblArduinoAtual"
+                android:text=""
+                android:textColor="@color/colorGray"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
 
 
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/btnSelecionarArduino"
-        android:layout_width="244dp"
-        android:layout_height="68dp"
-        android:background="#1199D6"
-        android:onClick="selecionarArduino"
-        android:text="@string/selecionar"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.861" />
-
-    <Button
-        android:id="@+id/btnPorta"
-        android:layout_width="152dp"
-        android:layout_height="85dp"
-        android:background="#FFFFFF"
-        android:text="@string/porta"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.428" />
-
-    <Button
-        android:id="@+id/btnVentiladorControle"
-        android:layout_width="152dp"
-        android:layout_height="85dp"
-        android:background="#FFFFFF"
-        android:text="@string/ventiladorcontrol"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
-
-    <Button
-        android:id="@+id/btnVentiladorLigarDesligar"
-        android:layout_width="152dp"
-        android:layout_height="85dp"
-        android:background="#FFFFFF"
-        android:text="@string/ventiladorligar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
-
-    <Button
-        android:id="@+id/btnLampada"
-        android:layout_width="152dp"
-        android:layout_height="85dp"
-        android:background="#FFFFFF"
-        android:onClick="mudarEstadoLampada"
-        android:text="@string/lampada"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.428" />
-
-
-    <TextView
-        android:id="@+id/lblUltimaAtualizacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/data"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.144"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.325" />
-
-    <TextView
-        android:id="@+id/lblUmidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/umidade"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.286" />
-
-    <TextView
-        android:id="@+id/lblTemperatura"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/temperatura"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.128"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.248" />
-
-    <TextView
-        android:id="@+id/lblArduinoAtual"
-        android:layout_width="94dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/arduinoatual"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.132"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSelecionarArduino"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <ImageButton
-        android:id="@+id/btnRefresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#239E7B"
-        android:onClick="atualizarData"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.895"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.311"
-        app:srcCompat="@drawable/refresh" />
-
-    <TextView
-        android:id="@+id/lblData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.605"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.325" />
-
-    <TextView
-        android:id="@+id/lblNomeArduino"
-        android:layout_width="198dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="36dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.263"
-        app:layout_constraintStart_toEndOf="@+id/lblArduinoAtual" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

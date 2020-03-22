@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     // Ultima atualização de horário
     public void atualizarData(View view) {
         ultimaAtualizacao = LocalDateTime.now();
-        TextView exibirData = findViewById(R.id.lblData);
+        TextView exibirData = findViewById(R.id.text_data);
         String formatoDeData = "dd/MM/yyyy HH:mm:ss";
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern(formatoDeData);
         String dateFormated = ultimaAtualizacao.format(formatador);

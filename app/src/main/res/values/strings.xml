@@ -10,4 +10,5 @@
     <string name="selecionar">SELECIONAR ARDUINO ATIVO</string>
     <string name="arduinoatual">Arduino atual: </string>
     <string name="refresh"> </string>
+    <string name="ardhouse">ArdHouse</string>
 </resources>

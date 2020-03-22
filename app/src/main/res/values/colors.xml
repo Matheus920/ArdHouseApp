@@ -5,4 +5,8 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorArduino">#00878f</color>
     <color name="colorWhite">#FFFFFF</color>
-</resources>
+    <color name="colorGray">#FF1C1C1C</color>
+    <color name="colorGray2">#F1F1F1</color>
+    <color name="colorGray3">#616161</color>
+
+    </resources>

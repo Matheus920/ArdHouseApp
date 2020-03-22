@@ -14,6 +14,7 @@ import android.os.VibrationEffect;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.os.Vibrator;
 import android.widget.Toast;
@@ -41,6 +42,9 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selecionar_arduino);
+
+        getSupportActionBar().hide();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         txtBarcodeValue = findViewById(R.id.txtBarcodeValue);
         surfaceView = findViewById(R.id.surfaceView);
         vibrador = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
