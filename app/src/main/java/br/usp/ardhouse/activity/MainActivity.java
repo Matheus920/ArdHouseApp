@@ -72,10 +72,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void mudarEstadoLampada(View view){
-        controller.mudarEstadoLampada(new ServerCallback() {
+        controller.obterEstadoLampada(new ServerCallback() {
             @Override
             public void onSuccess(String result) {
-                Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                if(result.equals("0") || result.equals("1")) {
+                    boolean status = Boolean.parseBoolean(result);
+                    controller.mudarEstadoLampada(new ServerCallback() {
+                        @Override
+                        public void onSuccess(String result) {
+                            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                        }
+                    }, status);
+                } else {
+                    Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -40,15 +40,34 @@ public class MainActivityController {
         return resposta;
     }
 
-    public void mudarEstadoLampada(final ServerCallback callback){
+    public void obterEstadoLampada(final ServerCallback callback){
         String nomeArduino = lerArduinoAtual();
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "http://" + nomeArduino + "/?ledParam=1";
+        String url = "http://" + nomeArduino + "/?ledStatus";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                callback.onSuccess(response.substring(0, 10));
+                callback.onSuccess(response.substring(0, 1));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onSuccess(error.getMessage());
+            }
+        });
+
+        queue.add(stringRequest);
+    }
+
+    public void mudarEstadoLampada(final ServerCallback callback, boolean status){
+        String nomeArduino = lerArduinoAtual();
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = status ? "http://" + nomeArduino + "/?ledParam=0" : "http://" + nomeArduino + "/?ledParam=1";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                callback.onSuccess(response);
             }
         }, new Response.ErrorListener() {
             @Override
