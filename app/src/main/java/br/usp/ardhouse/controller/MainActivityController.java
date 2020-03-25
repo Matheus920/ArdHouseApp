@@ -5,6 +5,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -15,6 +16,7 @@ import com.android.volley.toolbox.Volley;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import br.usp.ardhouse.data.Arquivo;
@@ -55,7 +57,14 @@ public class MainActivityController {
             public void onErrorResponse(VolleyError error) {
                 callback.onSuccess(error.getMessage());
             }
-        });
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Connection", "close");
+                return params;
+            }
+        };
 
         queue.add(stringRequest);
     }
@@ -74,7 +83,14 @@ public class MainActivityController {
             public void onErrorResponse(VolleyError error) {
                 callback.onSuccess(error.getMessage());
             }
-        });
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Connection", "close");
+                return params;
+            }
+        };
 
         queue.add(stringRequest);
     }
