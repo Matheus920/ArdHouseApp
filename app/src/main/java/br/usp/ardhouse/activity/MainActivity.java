@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private LocalDateTime ultimaAtualizacao;
     private MainActivityController controller;
     TextView exibicao;
+    TextView temperatura;
+    TextView umidade;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         controller = new MainActivityController(MainActivity.this);
         exibicao = findViewById(R.id.lblNomeArduino);
+        temperatura = findViewById(R.id.text_temperatura);
+        umidade = findViewById(R.id.text_umidade);
 
     }
 
@@ -60,7 +64,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Ultima atualização de horário
-    public void atualizarData(View view) {
+    public void atualizarPainel(View view) {
+        controller.obterTemperaturaEUmidade(new ServerCallback() {
+            @Override
+            public void onSuccess(String result) {
+                if(result != null && result.split("\\r?\\n").length == 2) {
+                    String tempTemperatura = result.split("\\r?\\n")[0];
+                    String tempUmidade = result.split("\\r?\\n")[1];
+                    temperatura.setText((tempTemperatura + "°C"));
+                    umidade.setText((tempUmidade + "%"));
+                }
+            }
+        });
         ultimaAtualizacao = LocalDateTime.now();
         TextView exibirData = findViewById(R.id.text_data);
         String formatoDeData = "dd/MM/yyyy HH:mm:ss";
@@ -75,27 +90,30 @@ public class MainActivity extends AppCompatActivity {
         controller.obterEstadoLampada(new ServerCallback() {
             @Override
             public void onSuccess(String result) {
-                if(result.equals("0") || result.equals("1")) {
-                    boolean status = Boolean.parseBoolean(result);
-                    controller.mudarEstadoLampada(new ServerCallback() {
-                        @Override
-                        public void onSuccess(String result) {
-                            Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
-                        }
-                    }, status);
-                } else {
-                    Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                if(result!=null) {
+                    if (result.equals("0") || result.equals("1")) {
+                        boolean status = Boolean.parseBoolean(result);
+                        controller.mudarEstadoLampada(new ServerCallback() {
+                            @Override
+                            public void onSuccess(String result) {
+                                Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                            }
+                        }, status);
+                    } else {
+                        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
 
     }
+    
 
     // Sempre que a tela principal é chamada, atualiza a data e o nome do Arduino atual
     @Override
     protected void onResume(){
         super.onResume();
-        atualizarData(null);
+        atualizarPainel(null);
         atualizarNomeArduino();
 
     }

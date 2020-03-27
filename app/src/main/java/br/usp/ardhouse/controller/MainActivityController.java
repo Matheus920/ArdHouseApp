@@ -94,4 +94,30 @@ public class MainActivityController {
 
         queue.add(stringRequest);
     }
+
+    public void obterTemperaturaEUmidade(final ServerCallback callback){
+        String nomeArduino = lerArduinoAtual();
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = "http://" + nomeArduino + "/?tempUmi";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                callback.onSuccess(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onSuccess(error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Connection", "close");
+                return params;
+            }
+        };
+
+        queue.add(stringRequest);
+    }
 }
