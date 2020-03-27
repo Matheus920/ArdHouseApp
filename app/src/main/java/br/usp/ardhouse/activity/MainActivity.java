@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(String result) {
                 if(result!=null) {
                     if (result.equals("0") || result.equals("1")) {
-                        boolean status = Boolean.parseBoolean(result);
+                        boolean status = result.equals("1");
                         controller.mudarEstadoLampada(new ServerCallback() {
                             @Override
                             public void onSuccess(String result) {
