@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         controller.obterTemperaturaEUmidade(new ServerCallback() {
             @Override
             public void onSuccess(String result) {
-                if(result != null && result.split("\\r?\\n").length == 2) {
+                if(result != null && result.split("\\r?\\n").length >= 2) {
                     String tempTemperatura = result.split("\\r?\\n")[0];
                     String tempUmidade = result.split("\\r?\\n")[1];
                     temperatura.setText((tempTemperatura + "°C"));
