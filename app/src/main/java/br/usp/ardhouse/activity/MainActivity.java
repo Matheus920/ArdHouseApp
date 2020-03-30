@@ -2,10 +2,12 @@ package br.usp.ardhouse.activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView exibicao;
     TextView temperatura;
     TextView umidade;
+    SwipeRefreshLayout mySwipeRefreshLayout;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -37,12 +40,22 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        
+        mySwipeRefreshLayout = findViewById(R.id.swiperefresh);
 
         controller = new MainActivityController(MainActivity.this);
         exibicao = findViewById(R.id.lblNomeArduino);
         temperatura = findViewById(R.id.text_temperatura);
         umidade = findViewById(R.id.text_umidade);
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        // Chama o método de atualizar o painel toda vez que o usuário desliza a tela
+                        atualizarPainel(null);
+                    }
+                }
+        );
+
 
     }
 
@@ -83,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         String dateFormated = ultimaAtualizacao.format(formatador);
         exibirData.setText("");
         exibirData.setText(exibirData.getText() + " " + dateFormated);
+        mySwipeRefreshLayout.setRefreshing(false);
 
     }
 
@@ -117,6 +131,4 @@ public class MainActivity extends AppCompatActivity {
         atualizarNomeArduino();
 
     }
-
-
 }
