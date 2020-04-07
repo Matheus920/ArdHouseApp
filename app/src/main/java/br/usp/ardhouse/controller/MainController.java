@@ -23,11 +23,11 @@ import br.usp.ardhouse.data.Arquivo;
 import br.usp.ardhouse.infrastructure.RequestSingleton;
 import br.usp.ardhouse.infrastructure.ServerCallback;
 
-public class MainActivityController {
+public class MainController {
 
     private Context context;
 
-    public MainActivityController(Context context){
+    public MainController(Context context){
         this.context = context;
     }
 

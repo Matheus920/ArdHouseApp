@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -18,7 +17,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import br.usp.R;
-import br.usp.ardhouse.controller.MainActivityController;
+import br.usp.ardhouse.controller.MainController;
 import br.usp.ardhouse.infrastructure.ServerCallback;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private String nomeArduino;
 
     private LocalDateTime ultimaAtualizacao;
-    private MainActivityController controller;
+    private MainController controller;
     TextView exibicao;
     TextView temperatura;
     TextView umidade;
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mySwipeRefreshLayout = findViewById(R.id.swiperefresh);
 
-        controller = new MainActivityController(MainActivity.this);
+        controller = new MainController(MainActivity.this);
         exibicao = findViewById(R.id.lblNomeArduino);
         temperatura = findViewById(R.id.text_temperatura);
         umidade = findViewById(R.id.text_umidade);
@@ -65,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
     // Método para levar usuário à tela de selecionar um novo Arduino
     public void selecionarArduino(View view){
         Intent intent = new Intent(this, SelecionarArduinoActivity.class);
+        startActivity(intent);
+    }
+
+    public void controlarVentilador(View view){
+        Intent intent = new Intent(this, ControlarVentiladorActivity.class);
         startActivity(intent);
     }
 

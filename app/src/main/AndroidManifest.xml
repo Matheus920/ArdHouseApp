@@ -44,6 +44,9 @@
         <activity android:name=".ardhouse.activity.MainActivity">
 
         </activity>
+        <activity android:name=".ardhouse.activity.ControlarVentiladorActivity"
+            android:parentActivityName=".ardhouse.activity.MainActivity">
+        </activity>
     </application>
 
 </manifest>
