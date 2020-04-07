@@ -7,6 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     TextView temperatura;
     TextView umidade;
     SwipeRefreshLayout mySwipeRefreshLayout;
+    final Handler handler = new Handler();
+    boolean statusLampada = false;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -106,13 +109,18 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(String result) {
                 if(result!=null) {
                     if (result.equals("0") || result.equals("1")) {
-                        boolean status = result.equals("1");
-                        controller.mudarEstadoLampada(new ServerCallback() {
+                        statusLampada = result.equals("1");
+                        handler.postDelayed(new Runnable() {
                             @Override
-                            public void onSuccess(String result) {
-                                Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                            public void run() {
+                                controller.mudarEstadoLampada(new ServerCallback() {
+                                    @Override
+                                    public void onSuccess(String result) {
+                                        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                                    }
+                                }, statusLampada);
                             }
-                        }, status);
+                        }, 500);
                     } else {
                         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
                     }

@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import br.usp.ardhouse.data.Arquivo;
+import br.usp.ardhouse.infrastructure.RequestSingleton;
 import br.usp.ardhouse.infrastructure.ServerCallback;
 
 public class MainActivityController {
@@ -44,7 +45,6 @@ public class MainActivityController {
 
     public void obterEstadoLampada(final ServerCallback callback){
         String nomeArduino = lerArduinoAtual();
-        RequestQueue queue = Volley.newRequestQueue(context);
         String url = "http://" + nomeArduino + "/?ledStatus";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -66,12 +66,11 @@ public class MainActivityController {
             }
         };
 
-        queue.add(stringRequest);
+        RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
     public void mudarEstadoLampada(final ServerCallback callback, boolean status){
         String nomeArduino = lerArduinoAtual();
-        RequestQueue queue = Volley.newRequestQueue(context);
         String url = status ? "http://" + nomeArduino + "/?ledParam=0" : "http://" + nomeArduino + "/?ledParam=1";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -92,12 +91,11 @@ public class MainActivityController {
             }
         };
 
-        queue.add(stringRequest);
+        RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
     public void obterTemperaturaEUmidade(final ServerCallback callback){
         String nomeArduino = lerArduinoAtual();
-        RequestQueue queue = Volley.newRequestQueue(context);
         String url = "http://" + nomeArduino + "/?tempUmi";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -118,6 +116,6 @@ public class MainActivityController {
             }
         };
 
-        queue.add(stringRequest);
+        RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 }
