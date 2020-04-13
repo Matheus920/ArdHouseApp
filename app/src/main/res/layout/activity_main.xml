@@ -129,6 +129,7 @@
                     android:layout_marginRight="10dp"
                     android:background="@drawable/botao_customizado"
                     android:foreground="@drawable/porta"
+                    android:onClick="abrirPorta"
                     android:tint="@color/colorWhite" />
 
             </LinearLayout>

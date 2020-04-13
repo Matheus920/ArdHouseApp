@@ -160,6 +160,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void abrirPorta(View view){
+        controller.destrancarPorta(new ServerCallback() {
+            @Override
+            public void onSuccess(String result) {
+                Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     
 
     // Sempre que a tela principal é chamada, atualiza a data e o nome do Arduino atual

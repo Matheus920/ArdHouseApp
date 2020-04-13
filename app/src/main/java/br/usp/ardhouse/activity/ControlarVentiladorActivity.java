@@ -16,21 +16,19 @@ public class ControlarVentiladorActivity extends AppCompatActivity {
 
     SeekBar seekBar;
     TextView valorNovaVelocidade;
+    TextView valorVelocidadeAtual;
     ControlarVentiladorController controller;
+    int valorAtual;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controlar_ventilador);
         seekBar = (SeekBar) findViewById(R.id.velocidadeVentiladorSeekBar);
+        valorVelocidadeAtual = (TextView) findViewById(R.id.velocidadeAtualValor);
         valorNovaVelocidade = (TextView) findViewById(R.id.novaVelocidadeValue);
         controller = new ControlarVentiladorController(ControlarVentiladorActivity.this);
-        controller.obterVelocidadeVentilador(new ServerCallback() {
-            @Override
-            public void onSuccess(String result) {
-                Toast.makeText(ControlarVentiladorActivity.this, "Velocidade atual é: " + result, Toast.LENGTH_SHORT).show();
-            }
-        });
+        atualizarValorAtual();
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -50,6 +48,12 @@ public class ControlarVentiladorActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        atualizarValorAtual();
+    }
+
     public void enviar(View view){
         controller.mudarVelocidadeVentilador(new ServerCallback() {
             @Override
@@ -59,5 +63,22 @@ public class ControlarVentiladorActivity extends AppCompatActivity {
             }
         }, Integer.parseInt(valorNovaVelocidade.getText().toString()));
         this.finish();
+    }
+
+    private void atualizarValorAtual(){
+        controller.obterVelocidadeVentilador(new ServerCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try{
+                   valorAtual = Integer.parseInt(result);
+                   valorVelocidadeAtual.setText(String.valueOf(valorAtual));
+                   seekBar.setProgress(valorAtual);
+                }catch(NumberFormatException ex){
+                    valorAtual = 0;
+                    valorVelocidadeAtual.setText(String.valueOf(valorAtual));
+                    seekBar.setProgress(valorAtual);
+                }
+            }
+        });
     }
 }

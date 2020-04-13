@@ -169,4 +169,29 @@ public class MainController {
 
         RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
+
+    public void destrancarPorta(final ServerCallback callback){
+        String nomeArduino = lerArduinoAtual();
+        String url = "http://" + nomeArduino + "/?portOpen";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    callback.onSuccess(response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    callback.onSuccess(error.getMessage());
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("Connection", "close");
+                    return params;
+                }
+            };
+
+        RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
+    }
 }
