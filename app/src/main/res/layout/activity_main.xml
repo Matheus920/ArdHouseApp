@@ -157,6 +157,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/botao_customizado"
                     android:foreground="@drawable/alarme"
+                    android:onClick="mudarEstadoAlarme"
                     android:tint="@color/colorWhite" />
             </LinearLayout>
 

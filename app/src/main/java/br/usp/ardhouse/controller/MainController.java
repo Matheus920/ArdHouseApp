@@ -118,4 +118,55 @@ public class MainController {
 
         RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
+
+    public void obterEstadoAlarme(final ServerCallback callback){
+        String nomeArduino = lerArduinoAtual();
+        String url = "http://" + nomeArduino + "/?alarmStatus";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                callback.onSuccess(response.substring(0, 1));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onSuccess(error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Connection", "close");
+                return params;
+            }
+        };
+
+        RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
+    }
+
+    public void mudarEstadoAlarme(final ServerCallback callback, boolean status){
+        String nomeArduino = lerArduinoAtual();
+        String url = status ? "http://" + nomeArduino + "/?alarmParam=0" : "http://" + nomeArduino + "/?alarmParam=1";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                callback.onSuccess(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onSuccess(error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Connection", "close");
+                return params;
+            }
+        };
+
+        RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
+    }
 }

@@ -25,6 +25,12 @@ public class ControlarVentiladorActivity extends AppCompatActivity {
         seekBar = (SeekBar) findViewById(R.id.velocidadeVentiladorSeekBar);
         valorNovaVelocidade = (TextView) findViewById(R.id.novaVelocidadeValue);
         controller = new ControlarVentiladorController(ControlarVentiladorActivity.this);
+        controller.obterVelocidadeVentilador(new ServerCallback() {
+            @Override
+            public void onSuccess(String result) {
+                Toast.makeText(ControlarVentiladorActivity.this, "Velocidade atual é: " + result, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

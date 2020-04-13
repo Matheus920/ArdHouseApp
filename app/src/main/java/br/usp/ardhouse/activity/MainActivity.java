@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     SwipeRefreshLayout mySwipeRefreshLayout;
     final Handler handler = new Handler();
     boolean statusLampada = false;
+    boolean statusAlarme = false;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -132,6 +133,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void mudarEstadoAlarme(View view){
+        controller.obterEstadoAlarme(new ServerCallback() {
+            @Override
+            public void onSuccess(String result) {
+                if(result != null){
+                    if(result.equals("0") || result.equals("1")){
+                        statusAlarme = result.equals("1");
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                controller.mudarEstadoAlarme(new ServerCallback() {
+                                    @Override
+                                    public void onSuccess(String result) {
+                                        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                                    }
+                                }, statusAlarme);
+                            }
+                        }, 500);
+                    } else {
+                        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
     }
     
 
