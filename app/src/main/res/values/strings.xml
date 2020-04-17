@@ -11,4 +11,6 @@
     <string name="arduinoatual">Arduino atual: </string>
     <string name="refresh"> </string>
     <string name="ardhouse">ArdHouse</string>
+    <string name="default_channel_id">default_channel_id</string>
+    <string name="default_notification_channel_name">default_notification_channel_name</string>
 </resources>

@@ -7,7 +7,6 @@ import androidx.annotation.RequiresApi;
 
 import java.io.IOException;
 
-import br.usp.ardhouse.data.Arquivo;
 
 public class SelecionarArduinoController {
 
@@ -18,13 +17,7 @@ public class SelecionarArduinoController {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public String salvarArduino(String ip){
-        String resposta = "";
-        try {
-            Arquivo.salvarArquivo("configuration.txt", "NAME=" + ip, context);
-        } catch (IOException e){
-            resposta = "Ocorreu um erro durante a leitura. Por favor tente novamente mais tarde";
-        }
-        return resposta;
+    public void salvarArduino(String ip){
+        context.getSharedPreferences("_", Context.MODE_PRIVATE).edit().putString("NAME", ip).apply();
     }
 }

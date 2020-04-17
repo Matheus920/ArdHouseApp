@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "452636344085",
+    "firebase_url": "https://ardhouseapp.firebaseio.com",
+    "project_id": "ardhouseapp",
+    "storage_bucket": "ardhouseapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452636344085:android:44a0e6db81a4e77341731c",
+        "android_client_info": {
+          "package_name": "br.usp.ardhouse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452636344085-l358dsce98jcbip1fojg7khjvnetprr4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUEKO1XrUuPOd7YpX2yM_YxubJD3d2ZRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452636344085-l358dsce98jcbip1fojg7khjvnetprr4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

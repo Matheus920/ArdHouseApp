@@ -4,6 +4,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 
 import br.usp.R;
 import br.usp.ardhouse.controller.MainController;
+import br.usp.ardhouse.infrastructure.MyFirebaseMessagingService;
 import br.usp.ardhouse.infrastructure.ServerCallback;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            String channelId = getString(R.string.default_channel_id);
+            String channelName = getString(R.string.default_notification_channel_name);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH));
+        }
 
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -76,12 +86,7 @@ public class MainActivity extends AppCompatActivity {
     // Método responsável por atualizar o nome do Arduino selecionado atualmente, lendo a partir de um arquivo .txt
     private void atualizarNomeArduino(){
         nomeArduino = controller.lerArduinoAtual();
-
-        if(nomeArduino != null) {
-            exibicao.setText(nomeArduino);
-        }else {
-            exibicao.setText("Nenhum arduino selecionado");
-        }
+        exibicao.setText(nomeArduino);
     }
 
     // Ultima atualização de horário

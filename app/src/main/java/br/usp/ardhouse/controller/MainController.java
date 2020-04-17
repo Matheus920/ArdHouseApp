@@ -18,8 +18,6 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import br.usp.ardhouse.data.Arquivo;
 import br.usp.ardhouse.infrastructure.RequestSingleton;
 import br.usp.ardhouse.infrastructure.ServerCallback;
 
@@ -33,14 +31,7 @@ public class MainController {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public String lerArduinoAtual(){
-        String resposta = "";
-        try {
-            Map<String, String> conteudo = Arquivo.lerArquivo("configuration.txt", context);
-            resposta = conteudo.get("NAME");
-        } catch (IOException e) {
-            resposta = "Ocorreu um erro ao ler o arduino";
-        }
-        return resposta;
+        return context.getSharedPreferences("_", Context.MODE_PRIVATE).getString("NAME", "Nenhum arduino selecionado");
     }
 
     public void obterEstadoLampada(final ServerCallback callback){

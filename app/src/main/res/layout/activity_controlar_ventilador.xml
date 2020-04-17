@@ -10,7 +10,7 @@
         android:id="@+id/velocidadeVentiladorSeekBar"
         android:layout_width="330dp"
         android:layout_height="33dp"
-        android:max="1023"
+        android:max="255"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
