@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 
 import br.usp.R;
 import br.usp.ardhouse.controller.SelecionarArduinoController;
+import br.usp.ardhouse.infrastructure.ServerCallback;
 
 import android.Manifest;
 import android.content.Context;
@@ -119,6 +120,14 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
                                 txtBarcodeValue.setText(conteudoQRCode);
                                 controller.salvarArduino(conteudoQRCode);
                                 vibrador.vibrate(VibrationEffect.createOneShot(400, VibrationEffect.DEFAULT_AMPLITUDE));
+
+                                controller.salvarId(new ServerCallback() {
+                                    @Override
+                                    public void onSuccess(String result) {
+                                        Toast.makeText(SelecionarArduinoActivity.this, result, Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
                                 fecharAtividade();
                             }
                         }
