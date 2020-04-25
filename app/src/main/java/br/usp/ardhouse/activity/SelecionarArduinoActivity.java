@@ -121,10 +121,21 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
                                 controller.salvarArduino(conteudoQRCode);
                                 vibrador.vibrate(VibrationEffect.createOneShot(400, VibrationEffect.DEFAULT_AMPLITUDE));
 
-                                controller.salvarId(new ServerCallback() {
+                                controller.salvarNomeDispositivo(new ServerCallback() {
                                     @Override
                                     public void onSuccess(String result) {
-                                        Toast.makeText(SelecionarArduinoActivity.this, result, Toast.LENGTH_SHORT).show();
+                                        getSharedPreferences("_", Context.MODE_PRIVATE).edit().putString("deviceId", result);
+                                        if(result.matches("-?\\d+")) {
+                                            Toast.makeText(SelecionarArduinoActivity.this, "Nome salvo com sucesso", Toast.LENGTH_SHORT).show();
+                                            controller.salvarIdArduino(new ServerCallback() {
+                                                @Override
+                                                public void onSuccess(String result) {
+                                                    Toast.makeText(SelecionarArduinoActivity.this, result, Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                        } else {
+                                            Toast.makeText(SelecionarArduinoActivity.this, "Algo deu errado ao salvar o nome do dispositivo", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 });
 
