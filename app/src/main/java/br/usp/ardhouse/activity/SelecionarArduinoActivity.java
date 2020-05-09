@@ -130,7 +130,7 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
                                 controller.salvarNomeDispositivo(new ServerCallback() {
                                     @Override
                                     public void onSuccess(String result) {
-                                        getSharedPreferences("_", Context.MODE_PRIVATE).edit().putString("deviceId", result);
+                                        getSharedPreferences("_", Context.MODE_PRIVATE).edit().putString("deviceId", result).apply();
                                         if(result.matches("-?\\d+")) {
                                             Toast.makeText(SelecionarArduinoActivity.this, "Nome salvo com sucesso", Toast.LENGTH_SHORT).show();
                                             controller.salvarIdArduino(new ServerCallback() {
