@@ -22,7 +22,10 @@ import java.util.Map;
 import br.usp.ardhouse.infrastructure.RequestSingleton;
 import br.usp.ardhouse.infrastructure.ServerCallback;
 
-
+/*
+    Classe responsável por realizar a comunicação com Arduino e com o notificador no que diz
+    respeito às ações de configuração de comunicação.
+ */
 public class SelecionarArduinoController {
 
     private Context context;
@@ -31,11 +34,13 @@ public class SelecionarArduinoController {
         this.context = context;
     }
 
+    // Salva o nome do Arduino nas configurações do celular
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void salvarArduino(String ip){
         context.getSharedPreferences("_", Context.MODE_PRIVATE).edit().putString("NAME", ip).apply();
     }
 
+    // Salva o dispositivo no notificador, de modo a permitir que seja gerado um id para o dispositivo
     public void salvarNomeDispositivo(final ServerCallback callback){
         String id = context.getSharedPreferences("_", Context.MODE_PRIVATE).getString("fb", "empty");
         String url = "https://ardhousenotifier.herokuapp.com/saveId";
@@ -71,6 +76,7 @@ public class SelecionarArduinoController {
         RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
+    // Salva o id do dispositivo no Arduino
     public void salvarIdArduino(final ServerCallback callback){
         String nomeArduino = new MainController(context).lerArduinoAtual();
         String id = context.getSharedPreferences("_", Context.MODE_PRIVATE).getString("deviceId", "0");

@@ -14,6 +14,10 @@ import java.util.Map;
 import br.usp.ardhouse.infrastructure.RequestSingleton;
 import br.usp.ardhouse.infrastructure.ServerCallback;
 
+/*
+    A classe do ControlarVentiladorController é responsável por estabelecer
+    comunicação com Arduino no que diz respeito às ações do ventilador.
+ */
 public class ControlarVentiladorController {
     private Context context;
 
@@ -21,6 +25,7 @@ public class ControlarVentiladorController {
         this.context = context;
     }
 
+    // Realiza requisição para mudar velocidade do ventilador
     public void mudarVelocidadeVentilador(final ServerCallback callback, int valor){
         String nomeArduino = new MainController(context).lerArduinoAtual();
         String url = "http://" + nomeArduino + "/?vent=" + valor;
@@ -47,6 +52,7 @@ public class ControlarVentiladorController {
         RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
+    // Realiza requisição para obter a velocidade do ventilador
     public void obterVelocidadeVentilador(final ServerCallback callback){
         String nomeArduino = new MainController(context).lerArduinoAtual();
         String url = "http://" + nomeArduino + "/?ventStatus";

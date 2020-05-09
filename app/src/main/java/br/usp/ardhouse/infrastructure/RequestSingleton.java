@@ -6,6 +6,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+/*
+    Classe responsável por implementar o design pattern Singleton para as requisições
+    da aplicação.
+ */
 public class RequestSingleton {
     private static RequestSingleton instance;
     private RequestQueue requestQueue;

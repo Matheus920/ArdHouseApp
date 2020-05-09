@@ -9,6 +9,9 @@ import android.view.WindowManager;
 
 import br.usp.R;
 
+/*
+    Classe responsável por representar a tela de espera antes de iniciar o sistema
+ */
 public class SplashActivity extends AppCompatActivity {
 
     @Override

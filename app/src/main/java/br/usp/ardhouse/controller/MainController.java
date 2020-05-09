@@ -21,6 +21,10 @@ import java.util.Map;
 import br.usp.ardhouse.infrastructure.RequestSingleton;
 import br.usp.ardhouse.infrastructure.ServerCallback;
 
+/*
+    A classe MainController é responsável por realizar comunicação com o Arduino
+    no que diz respeito às ações da tela principal.
+ */
 public class MainController {
 
     private Context context;
@@ -29,11 +33,13 @@ public class MainController {
         this.context = context;
     }
 
+    // Obtém o endereço do Arduino Atual salvo nas configurações do aplicativo
     @RequiresApi(api = Build.VERSION_CODES.N)
     public String lerArduinoAtual(){
         return context.getSharedPreferences("_", Context.MODE_PRIVATE).getString("NAME", "Nenhum arduino selecionado");
     }
 
+    // Obtém estado atual da lâmpada, 0 para desligada e 1 para ligada
     public void obterEstadoLampada(final ServerCallback callback){
         String nomeArduino = lerArduinoAtual();
         String url = "http://" + nomeArduino + "/?ledStatus";
@@ -60,6 +66,7 @@ public class MainController {
         RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
+    // Muda o estado da lâmpada
     public void mudarEstadoLampada(final ServerCallback callback, boolean status){
         String nomeArduino = lerArduinoAtual();
         String url = status ? "http://" + nomeArduino + "/?ledParam=0" : "http://" + nomeArduino + "/?ledParam=1";
@@ -85,6 +92,7 @@ public class MainController {
         RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
+    // Obtém dados sobre a temperatura e umidade lidas pelo Arduino
     public void obterTemperaturaEUmidade(final ServerCallback callback){
         String nomeArduino = lerArduinoAtual();
         String url = "http://" + nomeArduino + "/?tempUmi";
@@ -110,6 +118,7 @@ public class MainController {
         RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
+    // Obtém o estado atual do alarme, 0 para desligado e 1 para ligado
     public void obterEstadoAlarme(final ServerCallback callback){
         String nomeArduino = lerArduinoAtual();
         String url = "http://" + nomeArduino + "/?alarmStatus";
@@ -136,6 +145,7 @@ public class MainController {
         RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
+    // Muda o estado do alarme
     public void mudarEstadoAlarme(final ServerCallback callback, boolean status){
         String nomeArduino = lerArduinoAtual();
         String url = status ? "http://" + nomeArduino + "/?alarmParam=0" : "http://" + nomeArduino + "/?alarmParam=1";
@@ -161,6 +171,7 @@ public class MainController {
         RequestSingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
+    // Realiza requisição para destrancar a porta
     public void destrancarPorta(final ServerCallback callback){
         String nomeArduino = lerArduinoAtual();
         String url = "http://" + nomeArduino + "/?portOpen";

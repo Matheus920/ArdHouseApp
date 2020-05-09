@@ -27,6 +27,10 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
+/*
+    Essa classe é responsável pela tela de selecionar qual Arduino está ativo
+    atualmente, estabelecendo a comunicação entre o dispositivo e o Arduino.
+ */
 public class SelecionarArduinoActivity extends AppCompatActivity {
 
     private SelecionarArduinoController controller;
@@ -39,6 +43,7 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
     String conteudoQRCode = "";
 
 
+    // O método onCreate instancia os principais objetos que serão utilizados
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +57,7 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
         controller = new SelecionarArduinoController(SelecionarArduinoActivity.this);
     }
 
+    // O método serve para inicializar a leitura do QRCode, acessando a câmera do usuário
     private void initialiseDetectorsAndSources() {
 
         Toast.makeText(getApplicationContext(), "Iniciando leitura do QRCode", Toast.LENGTH_SHORT).show();

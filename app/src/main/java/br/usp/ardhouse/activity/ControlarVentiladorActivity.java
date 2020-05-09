@@ -12,6 +12,13 @@ import br.usp.R;
 import br.usp.ardhouse.controller.ControlarVentiladorController;
 import br.usp.ardhouse.infrastructure.ServerCallback;
 
+/*
+    Essa classe é responsável por representar a tela de controlar
+    a velocidade do ventilador. Ela é gerada quando é clicado no
+    botão de ventilador a partir da tela inicial.
+ */
+
+
 public class ControlarVentiladorActivity extends AppCompatActivity {
 
     SeekBar seekBar;
@@ -20,6 +27,11 @@ public class ControlarVentiladorActivity extends AppCompatActivity {
     ControlarVentiladorController controller;
     int valorAtual;
 
+    /*
+        O método onCreate realiza as instancias necessárias dos objetos
+        e também coloca um listener na seekBar de modo a escutar por alterações
+        feitas pelo usuário e atualizar o texto da tela.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +66,10 @@ public class ControlarVentiladorActivity extends AppCompatActivity {
         atualizarValorAtual();
     }
 
+    /*
+        O método de enviar escuta pelo clique no botão de enviar
+        mudando a velocidade do ventilador no Arduino.
+     */
     public void enviar(View view){
         controller.mudarVelocidadeVentilador(new ServerCallback() {
             @Override
@@ -65,6 +81,11 @@ public class ControlarVentiladorActivity extends AppCompatActivity {
         this.finish();
     }
 
+    /*
+        O método de atualizar o valor atual faz uma requisição para o Arduino
+        pedindo o valor da velocidade atual em que o ventilador se encontra e
+        preenchendo os respectivos campos na tela do aplicativo.
+     */
     private void atualizarValorAtual(){
         controller.obterVelocidadeVentilador(new ServerCallback() {
             @Override

@@ -23,6 +23,12 @@ import br.usp.ardhouse.controller.MainController;
 import br.usp.ardhouse.infrastructure.MyFirebaseMessagingService;
 import br.usp.ardhouse.infrastructure.ServerCallback;
 
+/*
+    A classe MainActivity representa a tela inicial e principal da aplicação.
+    É ela quem leva para todas as outras e conta com as principais ações de
+    comunicação do sistema.
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     private String nomeArduino;
@@ -38,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
     boolean statusAlarme = false;
 
 
+    /*
+        O método OnCreate instancia os objetos necessários e também
+        faz certas configurações, como o canal de notificações do aplicativo
+        e o SwipeToRefresh.
+     */
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // Método para levar usuário à tela de controlar velocidade do ventilador
     public void controlarVentilador(View view){
         Intent intent = new Intent(this, ControlarVentiladorActivity.class);
         startActivity(intent);
@@ -89,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         exibicao.setText(nomeArduino);
     }
 
-    // Ultima atualização de horário
+    // Ultima atualização de horário e da umidade e temperatura
     public void atualizarPainel(View view) {
         controller.obterTemperaturaEUmidade(new ServerCallback() {
             @Override
@@ -113,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Método responsável por ligar/desligar a lâmpada a depender do estado atual da mesma
     public void mudarEstadoLampada(View view){
         controller.obterEstadoLampada(new ServerCallback() {
             @Override
@@ -140,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Método responsável por ligar/desligar alarme dependendo do estado atual do mesmo
     public void mudarEstadoAlarme(View view){
         controller.obterEstadoAlarme(new ServerCallback() {
             @Override
@@ -166,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Método responsável por destrancar a porta
     public void abrirPorta(View view){
         controller.destrancarPorta(new ServerCallback() {
             @Override
@@ -176,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
 
-    // Sempre que a tela principal é chamada, atualiza a data e o nome do Arduino atual
+    // Sempre que a tela principal é chamada, atualiza a temperatura e a umidade e o nome do Arduino atual
     @Override
     protected void onResume(){
         super.onResume();
