@@ -12,15 +12,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jakewharton.rxbinding4.view.RxView;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
 
 import br.usp.R;
 import br.usp.ardhouse.controller.MainController;
-import br.usp.ardhouse.infrastructure.MyFirebaseMessagingService;
 import br.usp.ardhouse.infrastructure.ServerCallback;
 
 /*
@@ -32,12 +35,15 @@ import br.usp.ardhouse.infrastructure.ServerCallback;
 public class MainActivity extends AppCompatActivity {
 
     private String nomeArduino;
-
     private LocalDateTime ultimaAtualizacao;
     private MainController controller;
     TextView exibicao;
     TextView temperatura;
     TextView umidade;
+    ImageButton lampadaBtn;
+    ImageButton alarmeBtn;
+    ImageButton ventiladorBtn;
+    ImageButton portaBtn;
     SwipeRefreshLayout mySwipeRefreshLayout;
     final Handler handler = new Handler();
     boolean statusLampada = false;
@@ -70,6 +76,29 @@ public class MainActivity extends AppCompatActivity {
         exibicao = findViewById(R.id.lblNomeArduino);
         temperatura = findViewById(R.id.text_temperatura);
         umidade = findViewById(R.id.text_umidade);
+        portaBtn = findViewById(R.id.button_porta);
+        ventiladorBtn = findViewById(R.id.button_ventilador);
+        alarmeBtn = findViewById(R.id.button_alarme);
+        lampadaBtn = findViewById(R.id.btnLampada);
+
+        RxView.clicks(portaBtn).throttleFirst(500, TimeUnit.MILLISECONDS)
+                .subscribe(empty -> {
+                    abrirPorta(null);
+                }
+        );
+
+        RxView.clicks(alarmeBtn).throttleFirst(500, TimeUnit.MILLISECONDS)
+                .subscribe(empty -> {
+                    mudarEstadoAlarme(null);
+                }
+        );
+
+        RxView.clicks(lampadaBtn).throttleFirst(500, TimeUnit.MILLISECONDS)
+                .subscribe(empty -> {
+                    mudarEstadoLampada(null);
+                }
+        );
+
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
@@ -122,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
         exibirData.setText("");
         exibirData.setText(exibirData.getText() + " " + dateFormated);
         mySwipeRefreshLayout.setRefreshing(false);
-
     }
 
     // Método responsável por ligar/desligar a lâmpada a depender do estado atual da mesma
@@ -197,6 +225,5 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         atualizarPainel(null);
         atualizarNomeArduino();
-
     }
 }
