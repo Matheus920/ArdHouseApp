@@ -2,10 +2,16 @@ package br.usp.ardhouse.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import br.usp.R;
 
@@ -14,22 +20,45 @@ import br.usp.R;
  */
 public class SplashActivity extends AppCompatActivity {
 
+    private static int SPLASH_TIMER = 4000;
+
+    // Variáveis
+    ImageView backgroundImage;
+    TextView title, subtitle;
+    Intent intent = new Intent();
+
+    // Animações
+    Animation topAnim, bottomAnim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_splash);
 
-        // Oculta action bar e exibe a activity em full screen
-        getSupportActionBar().hide();
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // Animações
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_anim);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_anim);
+
+        backgroundImage = findViewById(R.id.background_image);
+        title = findViewById(R.id.titlesplash);
+        subtitle = findViewById(R.id.subtitlesplash);
+
+        backgroundImage.setAnimation(topAnim);
+        title.setAnimation(bottomAnim);
+        subtitle.setAnimation(bottomAnim);
 
         // Temporizador
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getBaseContext(), MainActivity.class));
+                intent.setClass(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_up_anim, R.anim.slide_out_up_anim);
                 finish();
             }
-        }, 2000);
+        }, SPLASH_TIMER);
     }
 }

@@ -3,14 +3,37 @@
     <string name="temperatura">Temperatura: </string>
     <string name="umidade">Umidade: </string>
     <string name="data">Última atualização: </string>
-    <string name="lampada">Ligar/Desligar \n Lâmpada</string>
-    <string name="ventiladorligar">Ligar/Desligar \n Ventilador</string>
-    <string name="ventiladorcontrol">Controlar \n Ventilador</string>
-    <string name="porta">Abrir/Fechar \n Porta</string>
-    <string name="selecionar">SELECIONAR ARDUINO ATIVO</string>
+    <string name="lampada">Lâmpada</string>
+    <string name="ventilador">Ventilador</string>
+    <string name="porta">Porta</string>
+    <string name="alarme">Alarme</string>
+    <string name="selecionar">Selecionar Arduino</string>
+    <string name="navi"></string>
     <string name="arduinoatual">Arduino atual: </string>
     <string name="refresh"> </string>
     <string name="ardhouse">ArdHouse</string>
     <string name="default_channel_id">default_channel_id</string>
     <string name="default_notification_channel_name">default_notification_channel_name</string>
+    <string name="sub_title">Automação residencial</string>
+    <string name="estado_usuario">Em qual estado você se encontra?</string>
+    <string name="estado_dispositivos">Estado dos dispositivos</string>
+    <string name="lampada_on">Ligada</string>
+    <string name="porta_aberta">Aberta</string>
+    <string name="ventilador_ligado">Ligado</string>
+    <string name="alarme_on">Ligado</string>
+    <string name="title_activity_menu_tool_bar">MenuToolBar</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+
 </resources>

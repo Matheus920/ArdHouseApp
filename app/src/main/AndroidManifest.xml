@@ -25,8 +25,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <activity android:name=".ardhouse.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,14 +44,14 @@
         <activity android:name=".ardhouse.activity.MainActivity">
 
         </activity>
-        <activity android:name=".ardhouse.activity.ControlarVentiladorActivity"
-            android:parentActivityName=".ardhouse.activity.MainActivity">
-        </activity>
+        <activity
+            android:name=".ardhouse.activity.ControlarVentiladorActivity"
+            android:parentActivityName=".ardhouse.activity.MainActivity"></activity>
 
         <service
             android:name=".ardhouse.infrastructure.MyFirebaseMessagingService"
-            android:stopWithTask="false"
-            android:exported="false">
+            android:exported="false"
+            android:stopWithTask="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -59,7 +59,7 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="default_channel_id"/>
+            android:value="default_channel_id" />
     </application>
 
 </manifest>
