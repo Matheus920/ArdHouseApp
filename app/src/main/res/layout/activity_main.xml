@@ -1,214 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swiperefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="br.usp.ardhouse.activity.MainActivity">
-
-
-    <LinearLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.145"
-        android:background="@color/colorGray2">
+        android:layout_height="match_parent"
+        tools:context=".ardhouse.activity.MainActivity"
+        android:fitsSystemWindows="true">
 
-        <View
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginLeft="165dp"
-            android:layout_marginTop="5dp"
-            android:foreground="@drawable/ardhousefundobranco" />
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:id="@+id/nav_view"
+            android:layout_gravity="start"
+            android:theme="@style/navigationTheme"
+            android:layout_height="match_parent"
+            app:headerLayout="@layout/header"
+            app:menu="@menu/main_menu"
+            />
 
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.52"
-        android:background="@color/colorArduino"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <RelativeLayout
-            android:id="@+id/layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="130dp">
+            android:layout_height="match_parent"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
+            android:background="#F5F5F5">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/colorArduinoClaro"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <ImageView
-                android:id="@+id/image_termometro"
-                android:layout_alignParentLeft="true"
-                android:layout_width="60dp"
-                android:layout_height="70dp"
-                android:background="@drawable/termometro"/>
-
-            <TextView
-                android:textSize="24dp"
-                android:layout_marginTop="22dp"
-                android:layout_toRightOf="@id/image_termometro"
-                android:id="@+id/text_temperatura"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="20º"
-                android:textColor="@color/colorGray" />
-
-            <ImageView
-                android:id="@+id/image_umidade"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/umidade"
-                android:layout_below="@id/image_termometro"/>
-            <TextView
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/image_umidade"
-                android:id="@+id/text_umidade"
-                android:layout_marginTop="18dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/image_termometro"
-                android:text="30%"
-                android:textSize="24dp"
-                android:textColor="@color/colorGray" />
-
-            <TextView
-                android:layout_marginLeft="110dp"
-                android:id="@+id/text_ultima_atualizacao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/data"
-                android:textColor="@color/colorGray" />
-
-            <TextView
-                android:id="@+id/text_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/text_ultima_atualizacao"
-                android:textColor="@color/colorGray" />
-
-
-        </RelativeLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_weight="0.4"
-            android:orientation="horizontal">
-
-            <LinearLayout
+                android:id="@+id/imagehometitle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/btnLampada"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/botao_customizado"
-                    android:foreground="@drawable/lampada" />
-
-                <ImageButton
-                    android:id="@+id/button_porta"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/botao_customizado"
-                    android:foreground="@drawable/porta"
-                    android:tint="@color/colorWhite" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/button_ventilador"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/botao_customizado"
-                    android:foreground="@drawable/ventilador"
-                    android:onClick="controlarVentilador"
-                    android:tint="@color/colorWhite" />
-
-                <ImageButton
-                    android:id="@+id/button_alarme"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/botao_customizado"
-                    android:foreground="@drawable/alarme"
-                    android:tint="@color/colorWhite" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.16"
-        android:background="@color/colorArduino"
-        android:orientation="vertical"
-        android:padding="25dp">
-
-        <Button
-            android:onClick="selecionarArduino"
-            android:id="@+id/btnSelecionarArduino"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/botao_customizado"
-            android:text="@string/selecionar"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:layout_height="175dp"
+                android:src="@drawable/hometitle"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/view" />
 
             <TextView
-                android:id="@+id/lblArduinoAtual"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/arduinoatual"
-                android:textColor="@color/colorGray"
-                android:textSize="15sp" />
+                android:fontFamily="@font/montserratealternatesregular"
+                android:text="@string/ardhouse"
+                android:textAlignment="center"
+                android:textColor="@color/colorText"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toTopOf="@+id/subtitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.507"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.8" />
+
 
             <TextView
-                android:id="@+id/lblNomeArduino"
+                android:id="@+id/subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="20dp"
-                android:layout_toRightOf="@+id/lblArduinoAtual"
-                android:text=""
-                android:textColor="@color/colorWhite"
-                android:textSize="15sp" />
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserratealternatesregular"
+                android:text="@string/sub_title"
+                android:textColor="@color/colorSubTitle"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
-        </RelativeLayout>
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar"/>
+
+            <TextView
+                android:id="@+id/devicestatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:fontFamily="@font/montserratregular"
+                android:text="@string/estado_dispositivos"
+                android:textColor="@color/colorText"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+            <TextView
+                android:id="@+id/txt_porta_aberta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/montserratregular"
+                android:text="@string/porta"
+                android:textColor="@color/colorSubTitle"
+/>
 
 
-    </LinearLayout>
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/text_alarme_on"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/montserratregular"
+                android:text="@string/alarme"
+                android:textColor="@color/colorSubTitle"
+                android:textSize="14sp"
+ />
+
+
+            <ImageButton
+                android:id="@+id/btnLampada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/buttonshape"
+                android:elevation="10dp"
+                android:foreground="@drawable/lampada_icon"
+                android:foregroundGravity="center"
+                android:onClick="mudarEstadoLampada"
+                app:layout_constraintBottom_toTopOf="@+id/button_porta"
+                app:layout_constraintEnd_toStartOf="@+id/button_alarme"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:id="@+id/button_ventilador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/buttonshape"
+                android:elevation="10dp"
+                android:foregroundGravity="center"
+                android:onClick="controlarVentilador"
+                app:layout_constraintBottom_toTopOf="@+id/button_alarme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toEndOf="@+id/btnLampada" />
+
+            <TextView
+                android:id="@+id/txt_lampada_on"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/montserratregular"
+                android:text="@string/lampada"
+                android:textColor="@color/colorSubTitle"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
+                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout3" />
+
+            <TextView
+                android:id="@+id/txt_ventilador_ligado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/montserratregular"
+                android:text="@string/ventilador"
+                android:textColor="@color/colorSubTitle"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+                app:layout_constraintHorizontal_bias="0.616"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout4" />
+
+
+            <ImageButton
+                android:id="@+id/button_porta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/buttonshape"
+                android:elevation="10dp"
+                android:foreground="@drawable/porta_icon"
+                android:foregroundGravity="center"
+                android:onClick="abrirPorta"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:id="@+id/button_alarme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/buttonshape"
+                android:elevation="10dp"
+                android:foreground="@drawable/alarme_icon"
+                android:foregroundGravity="center"
+                android:onClick="mudarEstadoAlarme"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.444"
+                app:layout_constraintStart_toEndOf="@+id/button_porta" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
