@@ -27,7 +27,7 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginTop="10dp"
         android:text="Escaneie um QRCode válido"
-        android:textColor="#F0F0F5"
+        android:textColor="@color/colorGray2"
         android:textSize="20sp" />
 
 

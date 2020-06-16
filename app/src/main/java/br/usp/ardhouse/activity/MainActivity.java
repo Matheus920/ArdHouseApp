@@ -1,16 +1,8 @@
 package br.usp.ardhouse.activity;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -18,17 +10,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.google.android.material.navigation.NavigationView;
 import com.jakewharton.rxbinding4.view.RxView;
 
 import java.time.LocalDateTime;
@@ -45,14 +32,11 @@ import br.usp.ardhouse.infrastructure.ServerCallback;
     comunicação do sistema.
  */
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     private String nomeArduino;
     private LocalDateTime ultimaAtualizacao;
     private MainController controller;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Toolbar toolbar;
     TextView exibicao;
     TextView temperatura;
     TextView umidade;
@@ -62,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageButton portaBtn;
     SwipeRefreshLayout mySwipeRefreshLayout;
     final Handler handler = new Handler();
-    static final float END_SCALE = 0.7f;
-    ConstraintLayout contentView;
     boolean statusLampada = false;
     boolean statusAlarme = false;
 
@@ -77,12 +59,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
-
-        setContentView(R.layout.header);
-        exibicao = findViewById(R.id.lblNomeArduino);
-
         setContentView(R.layout.activity_main);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -92,27 +68,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             notificationManager.createNotificationChannel(new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH));
         }
 
+        getSupportActionBar().hide();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mySwipeRefreshLayout = findViewById(R.id.swiperefresh);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
-        toolbar = findViewById(R.id.toolbar);
-        contentView  = findViewById(R.id.content);
-
-        setSupportActionBar(toolbar);
-
-        navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_home);
-
-       animateNavigationDrawer();
-
         controller = new MainController(MainActivity.this);
-        //temperatura = findViewById(R.id.text_temperatura);
-        //umidade = findViewById(R.id.text_umidade);
+        exibicao = findViewById(R.id.lblNomeArduino);
+        temperatura = findViewById(R.id.text_temperatura);
+        umidade = findViewById(R.id.text_umidade);
         portaBtn = findViewById(R.id.button_porta);
         ventiladorBtn = findViewById(R.id.button_ventilador);
         alarmeBtn = findViewById(R.id.button_alarme);
@@ -149,25 +112,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private void animateNavigationDrawer() {
-        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-
-                final float diffScaledOffset = slideOffset * (1 - END_SCALE);
-                final float offsetScale = 1 - diffScaledOffset;
-                contentView.setScaleX(offsetScale);
-                contentView.setScaleY(offsetScale);
-
-                final float xOffset = drawerView.getWidth() * slideOffset;
-                final float xOffsetDiff = contentView.getWidth() * diffScaledOffset / 2;
-                final float xTranslation = xOffset - xOffsetDiff;
-                contentView.setTranslationX(xTranslation);
-            }
-        });
-
-    }
-
     // Método para levar usuário à tela de selecionar um novo Arduino
     public void selecionarArduino(View view){
         Intent intent = new Intent(this, SelecionarArduinoActivity.class);
@@ -181,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     // Método responsável por atualizar o nome do Arduino selecionado atualmente, lendo a partir de um arquivo .txt
-
     private void atualizarNomeArduino(){
         nomeArduino = controller.lerArduinoAtual();
         exibicao.setText(nomeArduino);
@@ -200,15 +143,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
-
         ultimaAtualizacao = LocalDateTime.now();
-        /*TextView exibirData = findViewById(R.id.text_data);
+        TextView exibirData = findViewById(R.id.text_data);
         String formatoDeData = "dd/MM/yyyy HH:mm:ss";
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern(formatoDeData);
         String dateFormated = ultimaAtualizacao.format(formatador);
         exibirData.setText("");
         exibirData.setText(exibirData.getText() + " " + dateFormated);
-        mySwipeRefreshLayout.setRefreshing(false);*/
+        mySwipeRefreshLayout.setRefreshing(false);
     }
 
     // Método responsável por ligar/desligar a lâmpada a depender do estado atual da mesma
@@ -283,20 +225,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
         atualizarPainel(null);
         atualizarNomeArduino();
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.nav_home:
-                break;
-            case R.id.nav_selecionararduino:
-                Intent intent = new Intent(this, SelecionarArduinoActivity.class);
-                startActivity(intent);
-                break;
-        }
-
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
     }
 }
