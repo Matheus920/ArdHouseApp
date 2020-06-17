@@ -10,7 +10,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -24,6 +23,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //temperatura = findViewById(R.id.text_temperatura);
         //umidade = findViewById(R.id.text_umidade);
         portaBtn = findViewById(R.id.button_porta);
-        ventiladorBtn = findViewById(R.id.button_ventilador);
+        LinearLayout ventiladorBtn = findViewById(R.id.button_ventilador);
         alarmeBtn = findViewById(R.id.button_alarme);
         lampadaBtn = findViewById(R.id.btnLampada);
 
@@ -181,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     // Método responsável por atualizar o nome do Arduino selecionado atualmente, lendo a partir de um arquivo .txt
-
     private void atualizarNomeArduino(){
         nomeArduino = controller.lerArduinoAtual();
         exibicao.setText(nomeArduino);
