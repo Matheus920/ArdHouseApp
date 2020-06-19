@@ -10,26 +10,25 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ardhouse.activity.MainActivity"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        tools:context=".ardhouse.activity.MainActivity">
 
         <com.google.android.material.navigation.NavigationView
-            android:layout_width="wrap_content"
             android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="start"
             android:theme="@style/navigationTheme"
-            android:layout_height="match_parent"
             app:headerLayout="@layout/header"
-            app:menu="@menu/main_menu"
-            />
+            app:menu="@menu/main_menu" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
-            android:background="#F5F5F5">
+            android:background="#F5F5F5"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
 
             <View
                 android:id="@+id/view"
@@ -84,13 +83,13 @@
 
             <include
                 android:id="@+id/toolbar"
-                layout="@layout/toolbar"/>
+                layout="@layout/toolbar" />
 
             <TextView
-                android:layout_margin="30dp"
                 android:id="@+id/devicestatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="30dp"
                 android:fontFamily="@font/montserratregular"
                 android:text="@string/estado_dispositivos"
                 android:textColor="@color/colorText"
@@ -98,140 +97,182 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
 
-            <ImageButton
-                android:id="@+id/btnLampada"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:background="@drawable/buttonshape"
-                android:elevation="10dp"
-                android:foreground="@drawable/lampada_icon"
-                android:foregroundGravity="center"
-                android:onClick="mudarEstadoLampada"
-                app:layout_constraintBottom_toTopOf="@+id/button_porta"
-                app:layout_constraintEnd_toStartOf="@+id/button_alarme"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/devicestatus" />
-
-            <ImageButton
-                android:id="@+id/button_porta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:background="@drawable/buttonshape"
-                android:elevation="10dp"
-                android:foreground="@drawable/porta_icon"
-                android:foregroundGravity="center"
-                android:onClick="abrirPorta"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageButton
-                android:id="@+id/button_alarme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:background="@drawable/buttonshape"
-                android:elevation="10dp"
-                android:foreground="@drawable/alarme_icon"
-                android:foregroundGravity="center"
-                android:onClick="mudarEstadoAlarme"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.444"
-                app:layout_constraintStart_toEndOf="@+id/button_porta" />
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="20dp"
-                android:src="@drawable/ventilador"
-                app:layout_constraintBottom_toBottomOf="@+id/button_ventilador"
-                app:layout_constraintEnd_toEndOf="@+id/button_ventilador"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/button_ventilador"
-                app:layout_constraintTop_toTopOf="@+id/button_ventilador"
-                app:layout_constraintVertical_bias="1.0" />
-
             <LinearLayout
-                android:id="@+id/button_ventilador"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:background="@drawable/buttonshape"
-                android:elevation="10dp"
-                android:onClick="controlarVentilador"
-                app:layout_constraintBottom_toTopOf="@+id/button_alarme"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.503"
-                app:layout_constraintStart_toEndOf="@+id/btnLampada"
-                app:layout_constraintTop_toBottomOf="@+id/devicestatus"
-                android:orientation="vertical">
+                app:layout_constraintTop_toBottomOf="@+id/devicestatus">
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="20dp"
-                    android:src="@drawable/ventilador"
-                    app:layout_constraintBottom_toBottomOf="@+id/button_ventilador"
-                    app:layout_constraintEnd_toEndOf="@+id/button_ventilador"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/button_ventilador"
-                    app:layout_constraintTop_toTopOf="@+id/button_ventilador"
-                    app:layout_constraintVertical_bias="1.0" />
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingStart="50dp"
+                    android:paddingEnd="50dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/devicestatus">
+
+                    <ImageButton
+                        android:id="@+id/btnLampada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        android:elevation="10dp"
+                        android:foreground="@drawable/lampada_icon"
+                        android:foregroundGravity="center"
+                        android:onClick="mudarEstadoLampada"
+                        app:layout_constraintBottom_toTopOf="@+id/button_porta"
+                        app:layout_constraintEnd_toStartOf="@+id/button_alarme"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                    <ImageButton
+                        android:id="@+id/button_porta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        android:elevation="10dp"
+                        android:foreground="@drawable/porta_icon"
+                        android:foregroundGravity="center"
+                        android:onClick="abrirPorta"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/button_ventilador"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="8dp"
+                    android:paddingStart="42dp"
+                    android:paddingEnd="42dp"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/txt_lampada"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserratregular"
+                        android:gravity="center"
+                        android:text="@string/lampada"
+                        android:textColor="@color/colorSubTitle" />
+
+                    <TextView
+                        android:id="@+id/txt_porta"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="15dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserratregular"
+                        android:gravity="center"
+                        android:text="@string/porta"
+                        android:textColor="@color/colorSubTitle" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingStart="50dp"
+                    android:paddingEnd="50dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+                    <ImageButton
+                        android:id="@+id/button_alarme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        android:elevation="10dp"
+                        android:foreground="@drawable/alarme_icon"
+                        android:foregroundGravity="center"
+                        android:onClick="mudarEstadoAlarme"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/button_porta" />
+
+                    <LinearLayout
+                        android:id="@+id/button_ventilador"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        android:elevation="10dp"
+                        android:onClick="controlarVentilador"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view">
+
+                        <ImageView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ventilador"
+                            app:layout_constraintBottom_toBottomOf="@+id/button_ventilador"
+                            app:layout_constraintEnd_toEndOf="@+id/button_ventilador"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="@+id/button_ventilador"
+                            app:layout_constraintTop_toTopOf="@+id/button_ventilador"
+                            app:layout_constraintVertical_bias="1.0" />
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="8dp"
+                    android:paddingStart="42dp"
+                    android:paddingEnd="42dp"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/text_alarme"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserratregular"
+                        android:gravity="center"
+                        android:text="@string/alarme"
+                        android:textColor="@color/colorSubTitle" />
+
+                    <TextView
+                        android:id="@+id/txt_ventilador"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="15dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserratregular"
+                        android:gravity="center"
+                        android:text="@string/ventilador"
+                        android:textColor="@color/colorSubTitle" />
+                </LinearLayout>
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/txt_lampada_on"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserratregular"
-                android:text="@string/lampada"
-                android:textColor="@color/colorSubTitle"
-                app:layout_constraintBottom_toTopOf="@+id/button_porta"
-                app:layout_constraintEnd_toEndOf="@+id/btnLampada"
-                app:layout_constraintHorizontal_bias="0.516"
-                app:layout_constraintStart_toStartOf="@+id/btnLampada"
-                app:layout_constraintTop_toBottomOf="@+id/btnLampada" />
-
-
-            <TextView
-                android:id="@+id/txt_ventilador_ligado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserratregular"
-                android:text="@string/ventilador"
-                android:textColor="@color/colorSubTitle"
-                app:layout_constraintBottom_toTopOf="@+id/button_alarme"
-                app:layout_constraintEnd_toEndOf="@+id/button_ventilador"
-                app:layout_constraintStart_toStartOf="@+id/button_ventilador"
-                app:layout_constraintTop_toBottomOf="@+id/button_ventilador" />
-
-            <TextView
-                android:id="@+id/txt_porta_aberta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserratregular"
-                android:text="@string/porta"
-                android:textColor="@color/colorSubTitle"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/button_porta"
-                app:layout_constraintStart_toStartOf="@+id/button_porta"
-                app:layout_constraintTop_toBottomOf="@+id/button_porta" />
-
-            <TextView
-                android:id="@+id/text_alarme_on"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserratregular"
-                android:text="@string/alarme"
-                android:textColor="@color/colorSubTitle"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/button_alarme"
-                app:layout_constraintStart_toStartOf="@+id/button_alarme"
-                app:layout_constraintTop_toBottomOf="@+id/button_alarme" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.drawerlayout.widget.DrawerLayout>
