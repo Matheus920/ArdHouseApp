@@ -50,7 +50,7 @@ public class ControlarVentiladorActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_controlar_ventilador);
-        
+
         seekBar = (SeekBar) findViewById(R.id.velocidadeVentiladorSeekBar);
         valorVelocidadeAtual = (TextView) findViewById(R.id.velocidadeAtualValor);
         valorNovaVelocidade = (TextView) findViewById(R.id.novaVelocidadeValue);
