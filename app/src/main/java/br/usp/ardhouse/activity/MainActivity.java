@@ -78,10 +78,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
-
-        setContentView(R.layout.header);
-        exibicao = findViewById(R.id.lblNomeArduino);
 
         setContentView(R.layout.activity_main);
 
@@ -108,15 +104,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
 
-       animateNavigationDrawer();
+        animateNavigationDrawer();
 
-        controller = new MainController(MainActivity.this);
         //temperatura = findViewById(R.id.text_temperatura);
         //umidade = findViewById(R.id.text_umidade);
         portaBtn = findViewById(R.id.button_porta);
         LinearLayout ventiladorBtn = findViewById(R.id.button_ventilador);
         alarmeBtn = findViewById(R.id.button_alarme);
         lampadaBtn = findViewById(R.id.btnLampada);
+        controller = new MainController(MainActivity.this);
+        atualizarNomeArduino();
 
         RxView.clicks(portaBtn).throttleFirst(500, TimeUnit.MILLISECONDS)
                 .subscribe(empty -> {
@@ -183,6 +180,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Método responsável por atualizar o nome do Arduino selecionado atualmente, lendo a partir de um arquivo .txt
     private void atualizarNomeArduino(){
         nomeArduino = controller.lerArduinoAtual();
+        // Acessa o nome do Arduino que está dentro do toolbar
+        View headerView = navigationView.getHeaderView(0);
+        exibicao = headerView.findViewById(R.id.lblNomeArduino);
         exibicao.setText(nomeArduino);
     }
 

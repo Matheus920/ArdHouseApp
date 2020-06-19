@@ -9,6 +9,7 @@ import br.usp.ardhouse.infrastructure.ServerCallback;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -173,6 +174,7 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
     }
 
     public void fecharAtividade(){
-        this.finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

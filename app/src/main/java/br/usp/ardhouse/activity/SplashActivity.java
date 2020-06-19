@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import br.usp.R;
+import br.usp.ardhouse.controller.MainController;
 
 /*
     Classe responsável por representar a tela de espera antes de iniciar o sistema
@@ -26,6 +27,7 @@ public class SplashActivity extends AppCompatActivity {
     ImageView backgroundImage;
     TextView title, subtitle;
     Intent intent = new Intent();
+    MainController mainController = new MainController(this);
 
     // Animações
     Animation topAnim, bottomAnim;
@@ -54,7 +56,12 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                intent.setClass(getApplicationContext(), MainActivity.class);
+                // Verifica se já existe ou não um Arduino para decidir a tela inicial do usuário
+                if(!mainController.lerArduinoAtual().equals("Nenhum arduino selecionado")) {
+                    intent.setClass(getApplicationContext(), MainActivity.class);
+                } else {
+                    intent.setClass(getApplicationContext(), SelecionarArduinoActivity.class);
+                }
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_up_anim, R.anim.slide_out_up_anim);
                 finish();
