@@ -33,6 +33,16 @@
         app:layout_constraintTop_toBottomOf="@+id/view2"
         app:layout_constraintVertical_bias="0.426" />
 
+    <ImageView
+        android:id="@+id/fan_rotate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fan"
+        app:layout_constraintBottom_toTopOf="@+id/velocidadeVentiladorSeekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
     <TextView
         android:id="@+id/selecionarVelocidadeText"
         android:layout_width="wrap_content"
@@ -52,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="61dp"
         android:onClick="enviar"
+        android:textColor="@color/colorSubTitle"
         android:elevation="10dp"
         android:text="@string/enviar"
         android:textSize="20sp"
@@ -66,55 +77,18 @@
         app:layout_constraintVertical_bias="0.305" />
 
     <TextView
-        android:id="@+id/velocidadeAtualText"
-        android:layout_width="143dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="27dp"
-        android:text="Velocidade atual: "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/velocidadeVentiladorSeekBar"
-        app:layout_constraintVertical_bias="0.004" />
-
-    <TextView
-        android:id="@+id/novaVelocidadeText"
-        android:layout_width="143dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="27dp"
-        android:text="Nova velocidade: "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/velocidadeVentiladorSeekBar"
-        app:layout_constraintVertical_bias="0.109" />
-
-    <TextView
         android:id="@+id/velocidadeAtualValor"
         android:layout_width="120dp"
         android:layout_height="32dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="436dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.62"
-        app:layout_constraintStart_toEndOf="@+id/velocidadeAtualText"
-        app:layout_constraintTop_toBottomOf="@+id/velocidadeVentiladorSeekBar"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textColor="#0063CED4"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/novaVelocidadeValue"
         android:layout_width="120dp"
         android:layout_height="32dp"
-        android:layout_marginTop="78dp"
-        android:layout_marginBottom="388dp"
-        android:text="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.62"
-        app:layout_constraintStart_toEndOf="@+id/velocidadeAtualText"
-        app:layout_constraintTop_toBottomOf="@+id/velocidadeVentiladorSeekBar"
-        app:layout_constraintVertical_bias="0.0" />
+        android:text=""
+        android:textColor="#00000000"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

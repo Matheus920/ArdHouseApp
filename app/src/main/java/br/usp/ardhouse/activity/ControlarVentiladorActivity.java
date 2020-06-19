@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +30,11 @@ public class ControlarVentiladorActivity extends AppCompatActivity {
     TextView valorNovaVelocidade;
     TextView valorVelocidadeAtual;
     ControlarVentiladorController controller;
+    int inverso;
+
+    Animation rotateAnimation;
+    ImageView imageView;
+
     int valorAtual;
 
     /*
@@ -37,19 +45,36 @@ public class ControlarVentiladorActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_controlar_ventilador);
+        
         seekBar = (SeekBar) findViewById(R.id.velocidadeVentiladorSeekBar);
         valorVelocidadeAtual = (TextView) findViewById(R.id.velocidadeAtualValor);
         valorNovaVelocidade = (TextView) findViewById(R.id.novaVelocidadeValue);
+        imageView = (ImageView) findViewById(R.id.fan_rotate);
+
+        rotateAnimation();
+
         controller = new ControlarVentiladorController(ControlarVentiladorActivity.this);
         atualizarValorAtual();
+
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 valorNovaVelocidade.setText(String.valueOf(progress));
+
+                rotateAnimation();
+
+                if (progress == 0) rotateAnimation.setDuration(0);
+                else if (progress < 64) rotateAnimation.setDuration(2000-progress);
+                else if (progress < 128) rotateAnimation.setDuration(1500-progress);
+                else if (progress < 192) rotateAnimation.setDuration(1000-progress);
+                else rotateAnimation.setDuration(500-progress);
+
             }
 
             @Override
@@ -63,6 +88,13 @@ public class ControlarVentiladorActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void rotateAnimation() {
+        rotateAnimation= AnimationUtils.loadAnimation(this, R.anim.rotate);
+        rotateAnimation.setFillAfter(true);
+        imageView.startAnimation(rotateAnimation);
+    }
+
 
     @Override
     protected void onResume(){
