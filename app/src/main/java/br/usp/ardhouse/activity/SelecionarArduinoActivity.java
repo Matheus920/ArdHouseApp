@@ -1,5 +1,6 @@
 package br.usp.ardhouse.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -59,6 +60,18 @@ public class SelecionarArduinoActivity extends AppCompatActivity {
         surfaceView = findViewById(R.id.surfaceView);
         vibrador = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         controller = new SelecionarArduinoController(SelecionarArduinoActivity.this);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (ActivityCompat.checkSelfPermission(SelecionarArduinoActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+            overridePendingTransition(0, 0);
+        } else {
+            finish();
+        }
     }
 
     // O método serve para inicializar a leitura do QRCode, acessando a câmera do usuário
