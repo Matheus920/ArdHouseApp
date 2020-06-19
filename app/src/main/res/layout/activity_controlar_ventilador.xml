@@ -1,45 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:background="#F0F0F5"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorArduinoClaro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <SeekBar
         android:id="@+id/velocidadeVentiladorSeekBar"
-        android:layout_width="330dp"
-        android:layout_height="33dp"
+        android:layout_width="match_parent"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_height="wrap_content"
+        android:thumbTint="@color/colorArduino"
+        android:progressTint="@color/colorArduinoClaro"
         android:max="255"
+        android:progress="35"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.286" />
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.426" />
 
     <TextView
         android:id="@+id/selecionarVelocidadeText"
-        android:layout_width="347dp"
-        android:layout_height="42dp"
-        android:text="Selecione a velocidade do ventilador:"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserratregular"
+        android:text="Escolha a Velocidade do Ventilador"
+        android:textColor="@color/colorSubTitle"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.149" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/enviarButton"
-        android:layout_width="wrap_content"
+        android:layout_width="194dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="61dp"
         android:onClick="enviar"
-        android:text="Enviar"
+        android:elevation="10dp"
+        android:text="@string/enviar"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/montserratregular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
+        android:background="@drawable/buttonshape2"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/velocidadeVentiladorSeekBar"
         app:layout_constraintVertical_bias="0.305" />
