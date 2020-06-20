@@ -21,8 +21,7 @@
             android:theme="@style/navigationTheme"
             app:headerLayout="@layout/header"
             app:menu="@menu/main_menu" />
-
-
+        
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
