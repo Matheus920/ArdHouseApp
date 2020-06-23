@@ -10,5 +10,8 @@
     <color name="colorText">#252525</color>
     <color name="colorSubTitle">#3A3A3A</color>
     <color name="colorGray3">#616161</color>
+    <color name="start">#96E3E6</color>
+    <color name="center">#63CED4</color>
+    <color name="end">#E001686E</color>
 
     </resources>

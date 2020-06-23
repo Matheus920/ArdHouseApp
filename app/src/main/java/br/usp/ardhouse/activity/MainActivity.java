@@ -38,6 +38,7 @@ import java.util.concurrent.TimeUnit;
 import br.usp.R;
 import br.usp.ardhouse.controller.MainController;
 import br.usp.ardhouse.infrastructure.ServerCallback;
+import br.usp.ardhouse.progress.CustomProgressBar;
 
 /*
     A classe MainActivity representa a tela inicial e principal da aplicação.
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageButton alarmeBtn;
     ImageButton ventiladorBtn;
     ImageButton portaBtn;
+    CustomProgressBar pbUmidade;
     SwipeRefreshLayout mySwipeRefreshLayout;
     final Handler handler = new Handler();
     static final float END_SCALE = 0.7f;
@@ -107,9 +109,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         animateNavigationDrawer();
 
         //temperatura = findViewById(R.id.text_temperatura);
-        //umidade = findViewById(R.id.text_umidade);
+        umidade = findViewById(R.id.text_umidade);
+        pbUmidade = findViewById(R.id.pb_umidade);
         portaBtn = findViewById(R.id.button_porta);
-        LinearLayout ventiladorBtn = findViewById(R.id.button_ventilador);
+        ventiladorBtn = findViewById(R.id.button_ventilador);
         alarmeBtn = findViewById(R.id.button_alarme);
         lampadaBtn = findViewById(R.id.btnLampada);
         controller = new MainController(MainActivity.this);
@@ -173,7 +176,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // Método para levar usuário à tela de controlar velocidade do ventilador
     public void controlarVentilador(View view){
-        Intent intent = new Intent(this, ControlarVentiladorActivity.class);
+        //Intent intent = new Intent(this, ControlarVentiladorActivity.class);
+        Intent intent = new Intent(this, PainelActivity.class);
         startActivity(intent);
     }
 
@@ -194,8 +198,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if(result != null && result.split("\\r?\\n").length >= 2) {
                     String tempTemperatura = result.split("\\r?\\n")[0];
                     String tempUmidade = result.split("\\r?\\n")[1];
-                    temperatura.setText((tempTemperatura + "°C"));
-                    umidade.setText((tempUmidade + "%"));
+                    temperatura.setText((tempTemperatura));
+                    umidade.setText((tempUmidade));
+                    //pbUmidade.setMax(Integer.parseInt(tempUmidade));
+                    pbUmidade.setMax(140);
                 }
             }
         });

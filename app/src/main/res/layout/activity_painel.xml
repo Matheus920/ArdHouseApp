@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F0F5"
+    tools:context=".ardhouse.activity.PainelActivity">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorArduinoClaro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imagehometitle"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:src="@drawable/hometitle"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserratealternatesregular"
+        android:text="@string/ardhouse"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
+
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/montserratealternatesregular"
+        android:text="@string/sub_title"
+        android:textColor="@color/colorSubTitle"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
+    <br.usp.ardhouse.progress.CustomProgressBar
+        android:id="@+id/pb_umidade"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="100"
+        android:progressDrawable="@drawable/progress_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserratealternatesregular"
+        android:text="Umidade"
+        android:textColor="@color/colorArduino"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/pb_umidade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_umidade" />
+
+    <TextView
+        android:id="@+id/text_umidade"
+        android:background="@drawable/circle"
+        android:gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:text="74"
+        android:fontFamily="@font/oblikbold"
+        android:textColor="@color/colorArduino"
+        android:textSize="84sp"
+        app:layout_constraintBottom_toBottomOf="@+id/pb_umidade"
+        app:layout_constraintEnd_toEndOf="@+id/pb_umidade"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pb_umidade" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="%"
+        android:fontFamily="@font/oblikbold"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/colorArduino"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_umidade"
+        app:layout_constraintEnd_toEndOf="@+id/text_umidade"
+        app:layout_constraintTop_toTopOf="@+id/text_umidade" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

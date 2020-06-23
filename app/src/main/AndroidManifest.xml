@@ -27,6 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ardhouse.activity.PainelActivity"></activity>
         <activity android:name=".ardhouse.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,12 +42,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ardhouse.activity.MainActivity" />
         </activity>
-        <activity android:name=".ardhouse.activity.MainActivity">
-
-        </activity>
+        <activity android:name=".ardhouse.activity.MainActivity"></activity>
         <activity
             android:name=".ardhouse.activity.ControlarVentiladorActivity"
-            android:parentActivityName=".ardhouse.activity.MainActivity"></activity>
+            android:parentActivityName=".ardhouse.activity.MainActivity" />
 
         <service
             android:name=".ardhouse.infrastructure.MyFirebaseMessagingService"
