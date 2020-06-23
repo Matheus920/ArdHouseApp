@@ -161,7 +161,7 @@
 
 
             <ViewFlipper
-                android:inAnimation="@anim/slide_in_left"
+                android:inAnimation="@anim/slide_in_right"
                 android:outAnimation="@anim/slide_out_left"
                 android:id="@+id/view_flipper"
                 android:layout_width="match_parent"
@@ -184,13 +184,12 @@
                         android:layout_height="280dp"
                         android:indeterminate="false"
                         android:max="100"
-                        android:progress="100"
+                        android:progress="75"
                         android:progressDrawable="@drawable/progress_circle"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                     <TextView
                         android:id="@+id/textView2"
@@ -258,7 +257,7 @@
                         android:layout_height="280dp"
                         android:indeterminate="false"
                         android:max="100"
-                        android:progress="100"
+                        android:progress="75"
                         android:progressDrawable="@drawable/progress_circle"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -310,11 +309,11 @@
                         android:id="@+id/button_temperatura"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/arrow_right"
+                        android:background="@drawable/arrow_left"
                         android:foregroundGravity="center"
                         app:layout_constraintBottom_toTopOf="@+id/textView3"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/text_temperatura"
+                        app:layout_constraintEnd_toStartOf="@+id/pb_temperatura"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/text_temperatura"
 
                         />

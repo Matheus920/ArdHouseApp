@@ -17,16 +17,13 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.Transformation;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -36,7 +33,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.jakewharton.rxbinding4.view.RxView;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 import br.usp.R;
@@ -65,9 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageButton alarmeBtn;
     ImageButton ventiladorBtn;
     ImageButton portaBtn;
-    CustomProgressBar pbUmidade;
     SwipeRefreshLayout mySwipeRefreshLayout;
-    CustomProgressBar pb;
     ViewFlipper viewFlipper;
     final Handler handler = new Handler();
     static final float END_SCALE = 0.7f;
@@ -116,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         temperatura = findViewById(R.id.text_temperatura);
         umidade = findViewById(R.id.text_umidade);
-        pbUmidade = findViewById(R.id.pb_umidade);
         portaBtn = findViewById(R.id.button_porta);
         ventiladorBtn = findViewById(R.id.button_ventilador);
         alarmeBtn = findViewById(R.id.button_alarme);
@@ -125,8 +118,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         viewFlipper = findViewById(R.id.view_flipper);
 
-
-        startAnimation();
         atualizarNomeArduino();
 
         RxView.clicks(portaBtn).throttleFirst(500, TimeUnit.MILLISECONDS)
@@ -210,8 +201,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     String tempUmidade = result.split("\\r?\\n")[1];
                     temperatura.setText((tempTemperatura));
                     umidade.setText((tempUmidade));
-                    //pbUmidade.setMax(Integer.parseInt(tempUmidade));
-                    pbUmidade.setMax(140);
                 }
             }
         });
@@ -315,38 +304,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void startAnimation() {
-        MainActivity.ProgressBarAnimation localProgressBarAnimation = new MainActivity.ProgressBarAnimation(0.0F, 75.0F);
-        localProgressBarAnimation.setInterpolator(new OvershootInterpolator(0.5F));
-        localProgressBarAnimation.setDuration(4000L);
-        pbUmidade.startAnimation(localProgressBarAnimation);
-    }
-
-    private class ProgressBarAnimation extends Animation {
-        private float from;
-        private float to;
-
-        public ProgressBarAnimation(float from, float to) {
-            this.from = from;
-            this.to = to;
-        }
-
-        protected void applyTransformation(float paramFloat, Transformation paramTransformation) {
-            super.applyTransformation(paramFloat, paramTransformation);
-            float f = this.from + paramFloat * (this.to - this.from);
-            pbUmidade.setProgress((int) f);
-        }
-    }
-
     public void verTemperatura(View v) {
-        viewFlipper.setInAnimation(this, R.anim.slide_in_left);
+        viewFlipper.setInAnimation(this, R.anim.slide_in_right);
         viewFlipper.setOutAnimation(this, R.anim.slide_out_left);
-        viewFlipper.showNext();
+        viewFlipper.showPrevious();
     }
 
     public void verUmidade(View v) {
-        viewFlipper.setInAnimation(this, R.anim.slide_in_left);
+        viewFlipper.setInAnimation(this, R.anim.slide_in_right);
         viewFlipper.setOutAnimation(this, R.anim.slide_out_left);
-        viewFlipper.showPrevious();
+        viewFlipper.showNext();
     }
 }
