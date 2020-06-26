@@ -102,71 +102,153 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/devicestatus">
 
-                <ImageButton
-                    android:id="@+id/btnLampada"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/buttonshape"
-                    android:elevation="10dp"
-                    android:foreground="@drawable/lampada_icon"
-                    android:foregroundGravity="center"
-                    android:onClick="mudarEstadoLampada" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:id="@+id/button_porta"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/buttonshape"
-                    android:elevation="10dp"
-                    android:foreground="@drawable/porta_icon"
-                    android:foregroundGravity="center"
-                    android:onClick="abrirPorta" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
 
-                <ImageButton
-                    android:id="@+id/button_alarme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/buttonshape"
-                    android:elevation="10dp"
-                    android:foreground="@drawable/alarme_icon"
-                    android:foregroundGravity="center"
-                    android:onClick="mudarEstadoAlarme" />
+                        <ImageButton
+                            android:id="@+id/btnLampada"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/buttonshape"
+                            android:elevation="10dp"
+                            android:foreground="@drawable/lampada_icon"
+                            android:foregroundGravity="center"
+                            android:onClick="mudarEstadoLampada" />
 
-                <ImageButton
-                    android:id="@+id/button_ventilador"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/buttonshape"
-                    android:onClick="controlarVentilador"
-                    android:src="@drawable/ventilador_icon" />
+                        <TextView
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="10dp"
+                            android:id="@+id/txt_lampada"
+                            android:gravity="center"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserratregular"
+                            android:text="@string/lampada"
+                            android:textColor="@color/colorSubTitle" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <ImageButton
+                            android:id="@+id/button_porta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/buttonshape"
+                            android:elevation="10dp"
+                            android:foreground="@drawable/porta_icon"
+                            android:foregroundGravity="center"
+                            android:onClick="abrirPorta" />
+
+                        <TextView
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/txt_porta"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:fontFamily="@font/montserratregular"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:text="@string/porta"
+                            android:textColor="@color/colorSubTitle" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <ImageButton
+                            android:id="@+id/button_alarme"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/buttonshape"
+                            android:elevation="10dp"
+                            android:foreground="@drawable/alarme_icon"
+                            android:foregroundGravity="center"
+                            android:onClick="mudarEstadoAlarme" />
+
+                        <TextView
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/txt_alarme"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:fontFamily="@font/montserratregular"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:text="@string/alarme"
+                            android:textColor="@color/colorSubTitle" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <ImageButton
+                            android:id="@+id/button_ventilador"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/buttonshape"
+                            android:onClick="controlarVentilador"
+                            android:src="@drawable/ventilador_icon" />
+
+                        <TextView
+                            android:id="@+id/txt_ventilador"
+                            android:layout_width="80dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:fontFamily="@font/montserratregular"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:text="@string/ventilador"
+                            android:textColor="@color/colorSubTitle" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
 
             <ViewFlipper
-                android:inAnimation="@anim/slide_in_right"
-                android:outAnimation="@anim/slide_out_left"
                 android:id="@+id/view_flipper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:inAnimation="@anim/slide_in_right"
+                android:outAnimation="@anim/slide_out_left"
+                app:layout_constraintBottom_toTopOf="@+id/imageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
@@ -180,8 +262,8 @@
                     <br.usp.ardhouse.progress.CustomProgressBar
                         android:id="@+id/pb_umidade"
                         style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="280dp"
-                        android:layout_height="280dp"
+                        android:layout_width="242dp"
+                        android:layout_height="242dp"
                         android:indeterminate="false"
                         android:max="100"
                         android:progress="75"
@@ -189,7 +271,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView2"
@@ -198,7 +280,7 @@
                         android:fontFamily="@font/montserratealternatesregular"
                         android:text="Umidade"
                         android:textColor="@color/colorArduino"
-                        android:textSize="27sp"
+                        android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/pb_umidade"
                         app:layout_constraintEnd_toEndOf="@+id/pb_umidade"
                         app:layout_constraintStart_toStartOf="@+id/pb_umidade"
@@ -206,14 +288,14 @@
 
                     <TextView
                         android:id="@+id/text_umidade"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
                         android:background="@drawable/circle"
                         android:fontFamily="@font/oblikbold"
                         android:gravity="center"
-                        android:text="74"
+                        android:text=""
                         android:textColor="@color/colorArduino"
-                        android:textSize="60sp"
+                        android:textSize="50sp"
                         app:layout_constraintBottom_toBottomOf="@+id/pb_umidade"
                         app:layout_constraintEnd_toEndOf="@+id/pb_umidade"
                         app:layout_constraintStart_toStartOf="@+id/pb_umidade"
@@ -226,7 +308,7 @@
                         android:fontFamily="@font/oblikbold"
                         android:text="%"
                         android:textColor="@color/colorArduino"
-                        android:textSize="36sp"
+                        android:textSize="30sp"
                         app:layout_constraintBottom_toBottomOf="@+id/text_umidade"
                         app:layout_constraintEnd_toEndOf="@+id/text_umidade"
                         app:layout_constraintTop_toTopOf="@+id/text_umidade" />
@@ -253,8 +335,8 @@
                     <br.usp.ardhouse.progress.CustomProgressBar
                         android:id="@+id/pb_temperatura"
                         style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="280dp"
-                        android:layout_height="280dp"
+                        android:layout_width="242dp"
+                        android:layout_height="242dp"
                         android:indeterminate="false"
                         android:max="100"
                         android:progress="75"
@@ -271,7 +353,7 @@
                         android:fontFamily="@font/montserratealternatesregular"
                         android:text="Temperatura"
                         android:textColor="@color/colorArduino"
-                        android:textSize="27sp"
+                        android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/pb_temperatura"
                         app:layout_constraintEnd_toEndOf="@+id/pb_temperatura"
                         app:layout_constraintStart_toStartOf="@+id/pb_temperatura"
@@ -279,14 +361,14 @@
 
                     <TextView
                         android:id="@+id/text_temperatura"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
                         android:background="@drawable/circle"
                         android:fontFamily="@font/oblikbold"
                         android:gravity="center"
-                        android:text="30"
+                        android:text=""
                         android:textColor="@color/colorArduino"
-                        android:textSize="60sp"
+                        android:textSize="50sp"
                         app:layout_constraintBottom_toBottomOf="@+id/pb_temperatura"
                         app:layout_constraintEnd_toEndOf="@+id/pb_temperatura"
                         app:layout_constraintStart_toStartOf="@+id/pb_temperatura"
@@ -295,22 +377,22 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="30dp"
                         android:fontFamily="@font/oblikbold"
                         android:text="ºC"
+                        android:layout_marginEnd="15dp"
                         android:textColor="@color/colorArduino"
-                        android:textSize="36sp"
+                        android:textSize="30sp"
                         app:layout_constraintBottom_toBottomOf="@+id/text_temperatura"
                         app:layout_constraintEnd_toEndOf="@+id/text_temperatura"
                         app:layout_constraintTop_toTopOf="@+id/text_temperatura" />
 
                     <ImageButton
-                        android:onClick="verTemperatura"
                         android:id="@+id/button_temperatura"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/arrow_left"
                         android:foregroundGravity="center"
+                        android:onClick="verTemperatura"
                         app:layout_constraintBottom_toTopOf="@+id/textView3"
                         app:layout_constraintEnd_toStartOf="@+id/pb_temperatura"
                         app:layout_constraintStart_toStartOf="parent"
@@ -322,53 +404,41 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ViewFlipper>
 
-            <TextView
-                android:id="@+id/txt_lampada"
-                android:layout_width="30dp"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="15dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserratregular"
-                android:gravity="center"
-                android:text="@string/lampada"
-                android:textColor="@color/colorSubTitle" />
+                android:src="@drawable/data_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/txt_porta"
-                android:layout_width="30dp"
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/montserratregular"
-                android:gravity="center"
-                android:text="@string/porta"
-                android:textColor="@color/colorSubTitle" />
+                android:text="Última atualização:"
+                android:textColor="@color/colorSubTitle"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
 
             <TextView
-                android:id="@+id/text_alarme"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="15dp"
-                android:layout_weight="1"
+                android:id="@+id/text_data"
+                android:textSize="14sp"
+                android:textColor="@color/colorSubTitle"
                 android:fontFamily="@font/montserratregular"
-                android:gravity="center"
-                android:text="@string/alarme"
-                android:textColor="@color/colorSubTitle" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="@+id/textView4" />
 
-            <TextView
-                android:id="@+id/txt_ventilador"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserratregular"
-                android:gravity="center"
-                android:text="@string/ventilador"
-                android:textColor="@color/colorSubTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.drawerlayout.widget.DrawerLayout>

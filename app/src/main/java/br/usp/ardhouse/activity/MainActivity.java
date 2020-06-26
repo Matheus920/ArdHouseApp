@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,6 +34,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.jakewharton.rxbinding4.view.RxView;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 import br.usp.R;
@@ -71,10 +73,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     /*
-        O método OnCreate instancia os objetos necessários e também
+                 O método OnCreate instancia os objetos necessários e também
         faz certas configurações, como o canal de notificações do aplicativo
         e o SwipeToRefresh.
-     */
+    */
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,13 +208,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         ultimaAtualizacao = LocalDateTime.now();
-        /*TextView exibirData = findViewById(R.id.text_data);
+        TextView exibirData = findViewById(R.id.text_data);
         String formatoDeData = "dd/MM/yyyy HH:mm:ss";
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern(formatoDeData);
         String dateFormated = ultimaAtualizacao.format(formatador);
         exibirData.setText("");
         exibirData.setText(exibirData.getText() + " " + dateFormated);
-        mySwipeRefreshLayout.setRefreshing(false);*/
+        mySwipeRefreshLayout.setRefreshing(false);
     }
 
     // Método responsável por ligar/desligar a lâmpada a depender do estado atual da mesma
