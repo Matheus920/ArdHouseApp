@@ -199,14 +199,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onSuccess(String result) {
                 if(result != null && result.split("\\r?\\n").length >= 2) {
-                    String tempTemperatura = result.split("\\r?\\n")[0];
-                    String tempUmidade = result.split("\\r?\\n")[1];
-
-                    int tempUmidadeConvertido = Integer.parseInt(tempUmidade);
-                    int tempTemperaturaConvertido = Integer.parseInt(tempTemperatura);
-
-                    temperatura.setText(tempTemperaturaConvertido);
-                    umidade.setText(tempUmidadeConvertido);
+                    String tempTemperatura = result.split("\\r?\\n")[0].split(".")[0];
+                    String tempUmidade = result.split("\\r?\\n")[1].split(".")[0];
+                    temperatura.setText(tempTemperatura);
+                    umidade.setText(tempUmidade);
                 }
             }
         });
