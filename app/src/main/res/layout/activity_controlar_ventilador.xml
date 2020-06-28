@@ -8,30 +8,67 @@
     android:layout_height="match_parent">
 
     <View
-        android:id="@+id/view2"
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@color/colorArduinoClaro"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <SeekBar
-        android:id="@+id/velocidadeVentiladorSeekBar"
+    <ImageView
+        android:id="@+id/imagehometitle"
         android:layout_width="match_parent"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
-        android:layout_height="wrap_content"
-        android:thumbTint="@color/colorArduino"
-        android:progressTint="@color/colorArduinoClaro"
-        android:max="255"
-        android:progress="35"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="175dp"
+        android:src="@drawable/hometitle"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserratealternatesregular"
+        android:text="@string/ardhouse"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.426" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
+
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/montserratealternatesregular"
+        android:text="@string/sub_title"
+        android:textColor="@color/colorSubTitle"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <TextView
+        android:id="@+id/selecionarVelocidadeText"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserratregular"
+        android:text="Escolha a Velocidade do Ventilador"
+        android:textColor="@color/colorSubTitle"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <ImageView
         android:id="@+id/fan_rotate"
@@ -41,40 +78,42 @@
         app:layout_constraintBottom_toTopOf="@+id/velocidadeVentiladorSeekBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintTop_toBottomOf="@+id/selecionarVelocidadeText" />
 
-    <TextView
-        android:id="@+id/selecionarVelocidadeText"
-        android:layout_width="wrap_content"
+    <SeekBar
+        android:splitTrack="false"
+        android:id="@+id/velocidadeVentiladorSeekBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserratregular"
-        android:text="Escolha a Velocidade do Ventilador"
-        android:textColor="@color/colorSubTitle"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        android:max="255"
+        android:progress="35"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:progressDrawable="@drawable/seekbar_style"
+        android:thumb="@drawable/custom_thumb"
+        android:progressTint="@color/colorArduinoClaro"
+        app:layout_constraintBottom_toTopOf="@+id/enviarButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <Button
         android:id="@+id/enviarButton"
         android:layout_width="194dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
-        android:onClick="enviar"
-        android:textColor="@color/colorSubTitle"
+        android:background="@drawable/buttonshape2"
         android:elevation="10dp"
-        android:text="@string/enviar"
-        android:textSize="20sp"
-        android:textAllCaps="false"
+        android:layout_marginBottom="50dp"
         android:fontFamily="@font/montserratregular"
+        android:onClick="enviar"
+        android:text="@string/enviar"
+        android:textAllCaps="false"
+        android:textColor="@color/colorSubTitle"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/buttonshape2"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/velocidadeVentiladorSeekBar"
-        app:layout_constraintVertical_bias="0.305" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/velocidadeAtualValor"
