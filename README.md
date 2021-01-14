@@ -90,7 +90,7 @@ node index.js
 4. _Push_ a sua branch: `git push origin feature/fooBar`
 5. Crie um novo _Pull Request_
 
-## 💪 Contribuintes
+## 💪 Colaboradores
 * [**Vitor Martins**](github.com/vitormrts)
 * [**Matheus Moreira**](github.com/Matheus920)
 * [**Igor Augusto**](github.com/IgorSantoss)
