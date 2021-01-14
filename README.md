@@ -86,7 +86,7 @@ node index.js
 
 1. Faça o _fork_ do projeto
 2. Crie uma _branch_ com sua modificação: (`git checkout -b feature/fooBar`)
-3. Faça o _commit_: `git commit -am 'Add some fooBar'`
+3. Faça o _commit_: `git commit -m 'Add some fooBar'`
 4. _Push_ a sua branch: `git push origin feature/fooBar`
 5. Crie um novo _Pull Request_
 
@@ -98,5 +98,7 @@ node index.js
 
 ## 📝Licença
 Esse projeto está sob a licença MIT. Veja o arquivo LICENSE.md para mais detalhes.
+
+<p align="center">Feito com ❤️ por <strong>Vitor Martins ✌ </p>
 
 
