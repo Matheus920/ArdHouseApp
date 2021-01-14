@@ -19,17 +19,14 @@ ArdHouse é um protótipo de automação residencial que integra uma interface g
 <img src="./app/src/main/res/ventilador.gif" alt="this slowpoke moves" width="600">
 
 ### Ativando o alarme
-<img src="./app/src/main/res/alarme.gif" alt="this slowpoke moves" width="600">
+<img src="./app/src/main/res/alarme.gif" alt="this slowpoke moves" width="380">
 
 ### Abrindo a porta
 <img src="./app/src/main/res/porta.gif" alt="this slowpoke moves" width="600">
 
 
-
-
-
 ## 🚀 Tecnologias utilizadas
-De antemão, ressalta-se que utilizamos o Android Studio (sdk 29) no projeto.
+De antemão, ressalta-se que utilizamos o Android Studio (SDK 29) no projeto.
 
 * [Java](https://www.java.com/pt-BR/) - Aplicativo
 * [NodeJS](https://nodejs.org/en/) - Servidor (utilizou-se a framework express)
@@ -100,6 +97,6 @@ node index.js
 * [**Gustavo Borsoi**](github.com/gborsoi)
 
 ## 📝Licença
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE.md] para mais detalhes.
+Esse projeto está sob a licença MIT. Veja o arquivo LICENSE.md para mais detalhes.
 
 
